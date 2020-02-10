@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', 'MainController');
+// function () {
+//     return view('welcome', ['media' => \App\Media::all()]);
+// });
 
 Route::get('/user', 'UserController@index');
+
+Route::resource('/media', 'MediaController');
