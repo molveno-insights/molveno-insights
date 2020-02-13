@@ -12,10 +12,11 @@ class Media extends Model
 
     protected $fillable = [
         'name',
-        'date',
         'category',
         'added_by',
         'type',
-        'url'       
+        'url',
+        'forchildren',       
     ];
 }
+

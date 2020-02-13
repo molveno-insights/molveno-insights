@@ -16,12 +16,12 @@ class CreateMediaTable extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->dateTime('date');
-            $table->tinyInteger('category');
-            $table->smallInteger('added_by');
+            $table->string('category');
+            $table->string('added_by');
             $table->smallInteger('type');
             $table->string('url');
             $table->timestamps();
+            $table->boolean('forchildren');
         });
     }
 
