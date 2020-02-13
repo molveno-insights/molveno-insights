@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/base-layout-test', function() {
+    return view('layout.adminbase');
+});
+
 Route::resource('/', 'MainController');
 // function () {
 //     return view('welcome', ['media' => \App\Media::all()]);
