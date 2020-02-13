@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Media;
 
 class MediaController extends Controller
 {
     public function index()
     {
-        return view('welcome', ['media' => \App\Media::all()]);
+        return view('media.index', ['mediaList' => \App\Media::all()]);
     }
 
     public function show(Media $media)
@@ -25,12 +26,11 @@ class MediaController extends Controller
     {
         $media = new Media();
         $media->name = $request->input('name');
-        $media->date = $request->input('date');
         $media->category = $request->input('category');
         $media->added_by = $request->input('added_by');
-        $media->type = $request->input('type');
-        $media->forchildren = $request->input('forchildren');
-        
+        $media->url = $request->input('url');
+        $media->forchildren = (bool) $request->input('forchildren', 0);
+
         if ($media->save()) {
             return redirect()->route('media.index');
         } else {
@@ -46,11 +46,10 @@ class MediaController extends Controller
     public function update(Request $request, Media $media)
     {
         $media->name = $request->input('name');
-        $media->date = $request->input('date');
         $media->category = $request->input('category');
         $media->added_by = $request->input('added_by');
-        $media->type = $request->input('type');
-        $media->forchildren = $request->input('forchildren');
+        $media->url = $request->input('url');
+        $media->forchildren = (bool) $request->input('forchildren', 0);
 
         if ($media->save()) {
             echo "opgeslagen";

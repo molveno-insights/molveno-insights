@@ -18,7 +18,6 @@ class CreateMediaTable extends Migration
             $table->string('name');
             $table->string('category');
             $table->string('added_by');
-            $table->smallInteger('type');
             $table->string('url');
             $table->timestamps();
             $table->boolean('forchildren');

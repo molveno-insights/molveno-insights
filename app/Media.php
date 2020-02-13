@@ -14,7 +14,6 @@ class Media extends Model
         'name',
         'category',
         'added_by',
-        'type',
         'url',
         'forchildren',       
     ];
