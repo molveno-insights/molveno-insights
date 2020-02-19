@@ -29,24 +29,56 @@
           <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
               </a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Videos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="#">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
+          <a class="nav-link" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('media.index') }}">media index</a>
-        </li>
-      </ul>
+
+    </ul>
     </div>
   </div>
 </nav>
 
 <div class="container-fluid">
 
+
     @yield('content')
+<br>
+  <form class="md-form">
+    <div class="file-field">
+      <a class="btn-floating peach-gradient mt-0 float-left">
+        <i class="fas fa-paperclip" aria-hidden="true"></i>
+        <input type="file">
+      </a>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload your file">
+      </div>
+    </div>
+  </form>
+  <form class="md-form">
+    <div class="file-field">
+      <a class="btn-floating blue-gradient mt-0 float-left">
+        <i class="far fa-heart" aria-hidden="true"></i>
+        <input type="file">
+      </a>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload your file">
+      </div>
+    </div>
+  </form> 
 
 </div>
 
