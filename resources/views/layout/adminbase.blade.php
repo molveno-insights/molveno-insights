@@ -30,7 +30,7 @@
                 <span class="sr-only">(current)</span>
               </a>
         <li class="nav-item">
-          <a class="nav-link" href="#">Videos</a>
+          <a class="nav-link" href="{{ route('media.index') }}">Videos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Categories</a>
@@ -57,28 +57,6 @@
 
     @yield('content')
 <br>
-  <form class="md-form">
-    <div class="file-field">
-      <a class="btn-floating peach-gradient mt-0 float-left">
-        <i class="fas fa-paperclip" aria-hidden="true"></i>
-        <input type="file">
-      </a>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload your file">
-      </div>
-    </div>
-  </form>
-  <form class="md-form">
-    <div class="file-field">
-      <a class="btn-floating blue-gradient mt-0 float-left">
-        <i class="far fa-heart" aria-hidden="true"></i>
-        <input type="file">
-      </a>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload your file">
-      </div>
-    </div>
-  </form> 
 
 </div>
 
