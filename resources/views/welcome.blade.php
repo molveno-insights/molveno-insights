@@ -11,6 +11,7 @@
         <title>Molveno Lake Resort Video App</title>
     </head>
     <body>
+        @guest
         <div class="container-fluid p-0 flex-center full-height">
             <section class="jumbotron">
                 <div class="text-center">
@@ -34,6 +35,9 @@
                 </div>
             </div>
         </div>
+        @else
+            {{ route('/base-layout-test') }}
+        @endguest
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
