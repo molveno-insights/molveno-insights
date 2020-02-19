@@ -1,19 +1,40 @@
-@extends('layout.base')
+@extends('layout.adminbase')
 
 @section('content')
 <div>
-    <h2>Media overzicht (list)</h2>
+    <br>
+    <br>
+    <h2 class="text-center">Media overzicht (list)</h2>
+    <br>
     <div class="row">
+    <div class="col-12 text-center">
+    <div style="text-align: -webkit-center" class="table">
+    <table>
+        <thead>
+            <tr>
+              <th>Name</th>
+              <th>edit</th>
+              <th>delete</th>
+
+            </tr>
+          </thead>
+    <tbody>
     @foreach ($mediaList as $media)
         <div class="col-12">
-            <p>
-                <a href="{{ route('media.show', [$media->id]) }}">name: {{ $media->name }}</a>
-                <a href="{{ route('media.edit', [$media->id]) }}"><i class="fas fa-edit"></i></a>
-                <a href="{{ route('media.delete', [$media->id]) }}"><i class="fas fa-trash-alt"></i></a>
-            </p>
+            <tr>
+                <td><a href="{{ route('media.show', [$media->id]) }}">name: {{ $media->name }}</a></td>
+                <td><a href="{{ route('media.edit', [$media->id]) }}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="{{ route('media.delete', [$media->id]) }}"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
         </div>
     @endforeach
-    </div>
-    <a href="{{ route('media.create') }}"><button>Create new media</button></a>
+    </tbody>
+    </table>
+    <br>
+    <a type="button" class="btn btn-info"  href="{{ route('media.create') }}">Create new media</a>
+</div>
+</div>
 </div>
 @endsection
+
+

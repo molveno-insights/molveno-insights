@@ -49,7 +49,6 @@
                         <a class="nav-link" href="{{ route('register') }}">Login</a>
                     </li>
                             @endif
-                        @endauth
                     @endauth
                 @endif
                 <li class="nav-item dropdown">
@@ -64,8 +63,14 @@
                   </div>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
+                  <a class="nav-link disabled" href="{{ route('admin.show') }}">Admin</a>
                 </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link disabled" href="/base-layout-test">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/admin">Admin</a>
+                </li> --}}
               </ul>
               <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -100,6 +105,13 @@
             @endforeach
         </div>
     </div>
+    <br>
+    <br>
+    <footer>
+        <p>Posted by: Hege Refsnes</p>
+        <p>Contact information: <a href="mailto:someone@example.com">
+        someone@example.com</a>.</p>
+    </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -2,3 +2,16 @@ h2 {
   text-transform: uppercase;
 }
 
+footer {
+    text-align: center;
+    background-color: #212529;
+    margin: 0;
+    padding: 10px;
+    color: white;
+}
+
+
+/* admin  */
+
+
+/* end admin */
