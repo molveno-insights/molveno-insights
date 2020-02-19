@@ -33,17 +33,20 @@
           <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
               </a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Videos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="#">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">Guest profiles</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#">Logout</a>
         </li>
-      </ul>
+
+    </ul>
     </div>
   </div>
 </nav>
@@ -55,7 +58,7 @@
 
 
 
-<br>
+{{-- <br>
   <form class="md-form">
     <div class="file-field">
       <a class="btn-floating peach-gradient mt-0 float-left">
@@ -77,7 +80,7 @@
         <input class="file-path validate" type="text" placeholder="Upload your file">
       </div>
     </div>
-  </form>
+  </form> --}}
 
 </div>
 

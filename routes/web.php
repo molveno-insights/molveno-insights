@@ -11,23 +11,19 @@
 |
 */
 
-<<<<<<< HEAD
 // Route::resource('/', 'MainController');
 Route::get('/', 'MainController@index');
-=======
 Route::get('/base-layout-test', function() {
     return view('layout.adminbase');
 });
 
 Route::resource('/', 'MainController');
->>>>>>> rowena-base-layout
 // function () {
 //     return view('welcome', ['media' => \App\Media::all()]);
 // });
 
 // Route::get('/user', 'UserController@index');
 
-<<<<<<< HEAD
 // Route::resource('/media', 'MediaController');
 
 
@@ -48,6 +44,4 @@ Route::get('/media/{media}/delete', 'MediaController@delete')->name('media.delet
 // Listing (read) routes
 Route::get('/media/{media}', 'MediaController@show')->name('media.show');
 Route::get('/media', 'MediaController@index')->name('media.index');
-=======
 Route::resource('/media', 'MediaController');
->>>>>>> rowena-base-layout
