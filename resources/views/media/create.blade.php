@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('layout.adminbase')
 
 @section('content')
 <div class="ml-8 mr-8">
