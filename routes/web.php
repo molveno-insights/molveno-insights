@@ -24,10 +24,7 @@ Route::get('/admin', function() {
 Route::get('/base-layout', 'Admin@show')->name('admin.show');
 
 
-
-
-
-Route::get('media', 'MediaController@index')->name('media.index');
+Route::get('/admin', 'Admin@index');
 
 // Create routes
 Route::get('/media/create', 'MediaController@create')->name('media.create');
@@ -48,4 +45,3 @@ Route::get('/media', 'MediaController@index')->name('media.index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
