@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', 'MainController@index');
+
+Route::get('/', 'MainController@index')->name('welcome');
+Route::get('/base-layout-test', function() {
+    return view('layout.adminbase');
+});
+
+Route::get('/admin', function() {
+    return view('layout.admin');
+});
+
+Route::get('/base-layout', 'Admin@show')->name('admin.show');
+
 
 Route::get('/admin', 'Admin@index');
 
