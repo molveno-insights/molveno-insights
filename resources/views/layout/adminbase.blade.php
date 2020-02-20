@@ -30,7 +30,7 @@
                 <span class="sr-only">(current)</span>
               </a>
         <li class="nav-item">
-          <a class="nav-link" href="#">Videos</a>
+          <a class="nav-link" href="{{ route('media.index') }}">Videos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Categories</a>
