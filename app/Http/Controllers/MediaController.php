@@ -52,7 +52,7 @@ class MediaController extends Controller
         $media->forchildren = (bool) $request->input('forchildren', 0);
 
         if ($media->save()) {
-            echo "opgeslagen";
+            return redirect()->route('media.index');
         } else {
             echo "niet opgeslagen";
         }
@@ -67,3 +67,6 @@ class MediaController extends Controller
     }
 
 }
+
+
+

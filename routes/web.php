@@ -12,9 +12,8 @@
 */
 
 Route::get('/', 'MainController@index');
-Route::get('/base-layout-test', function() {
-    return view('layout.adminbase');
-});
+
+Route::get('/admin', 'Admin@index');
 
 // Create routes
 Route::get('/media/create', 'MediaController@create')->name('media.create');
@@ -29,6 +28,7 @@ Route::get('/media/{media}/delete', 'MediaController@delete')->name('media.delet
 
 // Listing (read) routes
 Route::get('/media/{media}', 'MediaController@show')->name('media.show');
+
 Route::get('/media', 'MediaController@index')->name('media.index');
 
 Auth::routes();
