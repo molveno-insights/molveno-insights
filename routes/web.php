@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'MainController@index');
+Route::get('/', 'MainController@index')->name('welcome');
 Route::get('/base-layout-test', function() {
     return view('layout.adminbase');
 });
