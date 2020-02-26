@@ -7,14 +7,9 @@ use App\Media;
 
 class MediaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view('media.index', ['mediaList' => \App\Media::all()]);
+        return view('media.index', ['mediaList' => Media::all()]);
     }
 
     public function show(Media $media)
@@ -29,6 +24,11 @@ class MediaController extends Controller
 
     public function insert(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'url' => 'required|max:15',
+        ]);
+
         $media = new Media();
         $media->name = $request->input('name');
         $media->category = $request->input('category');
@@ -39,7 +39,7 @@ class MediaController extends Controller
         if ($media->save()) {
             return redirect()->route('media.index');
         } else {
-            var_dump("niet opgeslagen");
+            var_dump("Failed to save!");
         }
     }
 
@@ -50,6 +50,11 @@ class MediaController extends Controller
 
     public function update(Request $request, Media $media)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'url' => 'required|max:15',
+        ]);
+
         $media->name = $request->input('name');
         $media->category = $request->input('category');
         $media->added_by = $request->input('added_by');
@@ -59,7 +64,7 @@ class MediaController extends Controller
         if ($media->save()) {
             return redirect()->route('media.index');
         } else {
-            echo "niet opgeslagen";
+            echo "Failed to save!";
         }
     }
     public function delete(Media $media)
@@ -67,11 +72,7 @@ class MediaController extends Controller
         if ($media->delete()) {
             return redirect()->route('media.index');
         } else {
-            echo "failed to delete media item";
+            echo "Failed to delete media item!";
         }
     }
-
 }
-
-
-
