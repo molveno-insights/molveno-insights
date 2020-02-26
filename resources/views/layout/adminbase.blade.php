@@ -50,9 +50,6 @@
                                 @csrf
                             </form>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
                     </ul>
                 </div>
             </div>

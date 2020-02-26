@@ -1,8 +1,16 @@
 @extends('layout.adminbase')
 
 @section('content')
-<div>
-    <h2>Edit Media</h2>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('media.index') }}">Media</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit Media</li>
+  </ol>
+</nav>
+<div class="ml-8 mr-8">
+    <div class="text-center">
+        <h2>Edit Media</h2>
+    </div>
     <form class="col-8 mx-auto" method="POST">
         @csrf
         <div class="form-group">
