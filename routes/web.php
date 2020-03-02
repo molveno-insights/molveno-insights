@@ -47,3 +47,4 @@ Route::middleware('auth')->group(function () {
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('index', 'VideoController@index')->name('videopage');
