@@ -41,9 +41,9 @@ Route::middleware('auth')->group(function () {
         // Listing (read) routes
         Route::get('/media/{media}', 'MediaController@show')->name('media.show');
         Route::get('/media', 'MediaController@index')->name('media.index');
+
+        Route::get('/home', 'HomeController@index')->name('home');
     });
 });
 
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -23,7 +23,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('welcome') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="/statics/Molveno_logo_white.png" height="50px" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,16 +31,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home
+                        <li class="nav-item {{ (request()->is('admin/home*')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('home') }}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('media.index') }}">Videos</a>
+                            <a class="nav-link {{ (request()->is('admin/media*')) ? 'active' : '' }}" href="{{ route('media.index') }}">Videos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Categories</a>
+                            <a class="nav-link {{ (request()->is('admin/category*')) ? 'active' : '' }}" href="#">Categories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

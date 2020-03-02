@@ -3,5 +3,9 @@ nav.navbar {
 }
 
 .container-fluid {
-    padding-bottom: 25px;
+    padding-bottom: 15px;
+}
+
+body {
+    background-color: #eee;
 }
