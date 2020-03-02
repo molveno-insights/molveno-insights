@@ -1,0 +1,98 @@
+.jumbotron {
+    margin: 0;
+    padding: 0;
+    background: url("/statics/mooi.jpg");
+    height: 95vh;
+    background-size: cover;
+    background-position: center center;
+}
+
+.navbar-brand {
+    margin-left: 3%;
+}
+
+.row {
+    margin: 0;
+}
+
+@media only screen and (max-width: 800px) {
+    h1 {
+        margin-top: 50px;
+        font-size: 40px;
+        color: white;
+        text-shadow: 4px 4px 9px rgba(17, 17, 17, 1);
+    }
+
+    #text {
+        padding: 7px 48px;
+        background-color: white;
+        border: 3px solid #000;
+        font-size: 18px;
+        color: black;
+        font-weight: bold;
+    }
+}
+
+@media only screen and (min-width: 801px) {
+    h1 {
+        margin-top: 13pc;
+        font-size: 6.125rem;
+        color: white;
+        text-shadow: 4px 4px 9px rgba(17, 17, 17, 1);
+    }
+
+    #text {
+        padding: 7px 48px;
+        background-color: white;
+        border: 3px solid #000;
+        font-size: 25px;
+        color: black;
+        font-weight: bold;
+    }
+}
+input[type=text] {
+    width: 50%;
+    border-radius: 25px;
+    border: none;
+    padding: 15px 22px;
+    margin: 10px 5px;
+    box-sizing: border-box;
+}
+
+.hero-text {
+    /* position: absolute; */
+    /* left: 0;
+    top: 45%; */
+    width: 100%;
+    text-align: center;
+    color: #000;
+}
+
+.hero-text button {
+    /* border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 0px 100px;
+    color: white;
+    background-color: black;
+    border-radius: 25px;
+    opacity: 1;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Archivo Black', ;
+    font-size: 2em; */
+    background-color: #e50914;
+    line-height: normal;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    padding: 5px 100px;
+    font-size: 2em;
+
+
+}
+
+.videos {
+    border: 2px solid black;
+    width: 15%;
+}

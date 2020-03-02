@@ -5,9 +5,9 @@
     <h2 class="display-4">Media</h2>
     <div class="row">
         <div class="col-md-12">
-            <a type="button" class="btn btn-info" href="{{ route('media.create') }}">Create new media</a>
-            <table class="table">
-                <thead>
+            <a type="button" class="btn btn-info" href="{{ route('media.create') }}" style="margin-bottom: 20px;">Create new media</a>
+            <table class="table table-striped">
+                <thead class="thead-dark">
                     <tr>
                         <th>Video</th>
                         <th>Name</th>
