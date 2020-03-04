@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Media;
 
 class MediaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('media.index', ['mediaList' => Media::all()]);
+        $query = $request->input('query');
+        $mediaList = Media::where("name", "like", "%" . $query . "%")->get();
+
+
+        // $data = DB::table('Media')->paginate(3);
+
+        // return view('user.index', ['users' => $users]);
+
+
+        return view('media.index', ['mediaList' => $mediaList]);
     }
 
     public function show(Media $media)

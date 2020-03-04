@@ -6,6 +6,15 @@
     <div class="row">
         <div class="col-md-12">
             <a type="button" class="btn btn-info" href="{{ route('media.create') }}" style="margin-bottom: 20px;">Create new media</a>
+            <form action="" method="GET">
+                @csrf
+                <div class="form-group">
+                    <label for="search">Search:</label>
+                    <input id="search" class="form-control" placeholder="Search" type="text" name="query">
+                    <button class="btn btn-primary">Search</button>
+
+                </div>
+            </form>
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>

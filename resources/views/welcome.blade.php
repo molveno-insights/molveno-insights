@@ -33,7 +33,13 @@
                         {{-- <p>hi</p> --}}
                         <br>
                         <br>
-                        <a href="#text"><button>Visit</button></a>
+                        <a href="{{ route('videopage') }}"><button>Visit</button></a>
+                    </div>
+                    <div class="col-12 text-center">
+                        <br>
+                        <br>
+                        <br>
+                        <a href="#text"><i class="fas fa-chevron-circle-down fa-4x"></i></a>
                     </div>
                 </div>
             </section>
@@ -42,7 +48,8 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <a id="text" type="button" href="{{ route('videopage') }}">videos</a>
+                        <h2 id="text">Categories</h2>
+                        {{-- <a id="text" type="button" href="{{ route('videopage') }}">videos</a> --}}
                     </div>
                 </div>
             </section>
