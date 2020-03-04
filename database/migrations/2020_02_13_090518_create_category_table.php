@@ -16,10 +16,13 @@ class CreateCategoryTable extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('description');
-            $table->string('created_by');
-            $table->string('last_edited_by');
             $table->timestamps();
+        });
+
+        Schema::table('media', function (Blueprint $table) {
+            $table->dropColumn('category');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('category');
         });
     }
 

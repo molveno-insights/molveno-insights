@@ -12,10 +12,14 @@ class Media extends Model
 
     protected $fillable = [
         'name',
-        'category',
         'added_by',
         'url',
         'forchildren',       
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(\App\Category::class);
+    }
 }
 
