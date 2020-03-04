@@ -42,6 +42,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/media/{media}', 'MediaController@show')->name('media.show');
         Route::get('/media', 'MediaController@index')->name('media.index');
 
+        // Route::get('users', function () {
+        //     $users = App\User::paginate(15);
+
+        //     $users->withPath('custom/url');
+
+        //     //
+        // });
+
+
         Route::get('/home', 'HomeController@index')->name('home');
     });
 });

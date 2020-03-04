@@ -10,11 +10,17 @@ class MediaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = $request->input('query');
-        $mediaList = Media::where("name", "like", "%" . $query . "%")->get();
+        $mediaList = [];
+        $query = Media::query();
 
+        $search = $request->input('search');
+        if ($query) {
+            $query->where("name", "like", "%" . $search . "%");
+        }
 
-        // $data = DB::table('Media')->paginate(3);
+        $mediaList = $query->paginate(3);
+
+        // $users = DB::table('Media')->paginate(3);
 
         // return view('user.index', ['users' => $users]);
 

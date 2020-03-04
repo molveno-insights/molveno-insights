@@ -10,7 +10,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="search">Search:</label>
-                    <input id="search" class="form-control" placeholder="Search" type="text" name="query">
+                    <input id="search" class="form-control" placeholder="Search" type="text" name="search">
                     <button class="btn btn-primary">Search</button>
 
                 </div>
@@ -35,8 +35,12 @@
                         <td><a href="{{ route('media.delete', [$media->id]) }}"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                 @endforeach
+                {{ $mediaList->links() }}
+
                 </tbody>
             </table>
+            {{-- {{ $mediaList->links() }} --}}
+
         </div>
     </div>
 </div>
