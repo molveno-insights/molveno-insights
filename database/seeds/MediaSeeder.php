@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Category;
 
 class MediaSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class MediaSeeder extends Seeder
     {
         DB::table('media')->insert([
             'name' => 'MOLVENO ...relax al lago ** trentino italy **',
-            'category' => 'fun',
+            'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
             'forchildren' => 1,
@@ -21,7 +22,7 @@ class MediaSeeder extends Seeder
 
         DB::table('media')->insert([
             'name' => 'Big Hero - Molveno Bike Park',
-            'category' => 'fun',
+            'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'JQIQyso-cWY',
             'forchildren' => 1,
@@ -29,7 +30,7 @@ class MediaSeeder extends Seeder
 
         DB::table('media')->insert([
             'name' => 'TRENTINO, ITALY Travel VLOG #1: Hiking in Paganella Dolomites, Lunch in Mountain Hut, Molveno Lake',
-            'category' => 'fun',
+            'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'uUN2q7iC2VU',
             'forchildren' => 1,
@@ -37,7 +38,7 @@ class MediaSeeder extends Seeder
 
         DB::table('media')->insert([
             'name' => 'Juf Roos • Alle Afleveringen • 2 Uur Special',
-            'category' => 'fun',
+            'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'NaMBUcQQ4js',
             'forchildren' => 1,
@@ -45,7 +46,7 @@ class MediaSeeder extends Seeder
 
         DB::table('media')->insert([
             'name' => 'The Princess and the Goblin Full Length Movie',
-            'category' => 'fun',
+            'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => '9kS6fSczcZs',
             'forchildren' => 1,
@@ -53,7 +54,7 @@ class MediaSeeder extends Seeder
 
         DB::table('media')->insert([
             'name' => 'MOLVENO ...relax al lago ** trentino italy **',
-            'category' => 'fun',
+            'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
             'forchildren' => 1,
@@ -61,7 +62,7 @@ class MediaSeeder extends Seeder
 
         DB::table('media')->insert([
             'name' => 'MOLVENO ...relax al lago ** trentino italy **',
-            'category' => 'fun',
+            'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
             'forchildren' => 1,
