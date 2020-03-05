@@ -14,8 +14,20 @@ class Media extends Model
         'name',
         'added_by',
         'url',
-        'forchildren',       
+        'forchildren',
     ];
+
+    public function like()
+    {
+       $this->likes++;
+       $this->save();
+    }
+
+    public function dislike()
+    {
+        $this->dislikes++;
+        $this->save();
+    }
 
     public function category()
     {

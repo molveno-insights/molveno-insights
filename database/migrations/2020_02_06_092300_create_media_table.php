@@ -19,6 +19,8 @@ class CreateMediaTable extends Migration
             $table->string('category');
             $table->string('added_by');
             $table->string('url');
+            $table->integer('likes')->default(0);
+            $table->integer('dislikes')->default(0);
             $table->timestamps();
             $table->boolean('forchildren');
         });

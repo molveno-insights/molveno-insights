@@ -59,3 +59,7 @@ Auth::routes(['register' => false, 'password.request' => false, 'reset' => false
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('index', 'VideoController@index')->name('videopage');
+// Route::post('/media', 'MainController@like')->name('videopage.like');
+
+Route::post('/media/{media}/like', 'MainController@like')->name('videopage.like');
+Route::post('/media/{media}/dislike', 'MainController@dislike')->name('videopage.dislike');
