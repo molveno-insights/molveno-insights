@@ -12,10 +12,26 @@ class Media extends Model
 
     protected $fillable = [
         'name',
-        'category',
         'added_by',
         'url',
-        'forchildren',       
+        'forchildren',
     ];
+
+    public function like()
+    {
+       $this->likes++;
+       $this->save();
+    }
+
+    public function dislike()
+    {
+        $this->dislikes++;
+        $this->save();
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(\App\Category::class);
+    }
 }
 

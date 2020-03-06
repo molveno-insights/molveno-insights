@@ -499,7 +499,19 @@ footer {
     color: white;
 }
 
+.fas {
+    padding: 10px;
+    color: gray;
+}
 
+.fas:hover {
+    color: #e50914;;
+}
+
+.row {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 /* admin  */
 
 

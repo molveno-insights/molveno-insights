@@ -18,6 +18,12 @@ class CreateCategoryTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::table('media', function (Blueprint $table) {
+            $table->dropColumn('category');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('category');
+        });
     }
 
     /**
