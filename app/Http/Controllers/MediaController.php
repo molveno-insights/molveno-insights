@@ -10,7 +10,7 @@ use App\Category;
 class MediaController extends Controller
 {
     public function index(Request $request)
-    {ssociate(DierSoort::
+    {
         $mediaList = [];
         $query = Media::query();
 
