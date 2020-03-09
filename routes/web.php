@@ -48,3 +48,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
+
+Route::post('/media/{media}/like', 'MainController@like')->name('videopage.like');
+Route::post('/media/{media}/dislike', 'MainController@dislike')->name('videopage.dislike');
