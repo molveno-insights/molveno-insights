@@ -29,9 +29,9 @@ class Media extends Model
         $this->save();
     }
 
-    public function category()
+    public function categoryBelong()
     {
-        return $this->belongsTo(\App\Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
 

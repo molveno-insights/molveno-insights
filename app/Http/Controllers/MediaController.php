@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Media;
+use App\Category;
 
 class MediaController extends Controller
 {
@@ -35,7 +36,7 @@ class MediaController extends Controller
 
     public function create()
     {
-        return view('media.create');
+        return view('media.create', ["categories" => Category::all()]);
     }
 
     public function insert(Request $request)
@@ -45,9 +46,16 @@ class MediaController extends Controller
             'url' => 'required|max:15',
         ]);
 
+        $category = Category::find($request->input('categorySelect'));
+
+        if (!$category) {
+            echo "Category not valid!";
+            exit;
+        }
+
         $media = new Media();
         $media->name = $request->input('name');
-        $media->category = $request->input('category');
+        $media->categoryBelong()->associate($category);
         $media->added_by = $request->input('added_by');
         $media->url = $request->input('url');
         $media->forchildren = (bool) $request->input('forchildren', 0);
@@ -61,7 +69,7 @@ class MediaController extends Controller
 
     public function edit(Media $media)
     {
-        return view('media.edit', ['media' => $media]);
+        return view('media.edit', ['media' => $media, 'categories' => Category::all()]);
     }
 
     public function update(Request $request, Media $media)
@@ -72,13 +80,13 @@ class MediaController extends Controller
         ]);
 
         $media->name = $request->input('name');
-        $media->category = $request->input('category');
+        $media->categoryBelong()->associate(Category::find($request->input('categorySelect')));
         $media->added_by = $request->input('added_by');
         $media->url = $request->input('url');
         $media->forchildren = (bool) $request->input('forchildren', 0);
 
         if ($media->save()) {
-            return redirect()->route('media.index');
+            return redirect()->route('media.index', ['media' => $media->id]);
         } else {
             echo "Failed to save!";
         }
