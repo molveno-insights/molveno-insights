@@ -36,7 +36,7 @@ class MediaController extends Controller
 
     public function create()
     {
-        return view('media.create');
+        return view('media.create', ["categories" => Category::all()]);
     }
 
     public function insert(Request $request)
@@ -47,6 +47,11 @@ class MediaController extends Controller
         ]);
 
         $category = Category::find($request->input('categorySelect'));
+
+        if (!$category) {
+            echo "Category not valid!";
+            exit;
+        }
 
         $media = new Media();
         $media->name = $request->input('name');
@@ -81,7 +86,7 @@ class MediaController extends Controller
         $media->forchildren = (bool) $request->input('forchildren', 0);
 
         if ($media->save()) {
-            return redirect()->route('media.index');
+            return redirect()->route('media.index', ['media' => $media->id]);
         } else {
             echo "Failed to save!";
         }
