@@ -17,9 +17,15 @@
             <label for="name">Name:</label>
             <input id="name" type="text" class="form-control" name="name" value="{{ $media->name }}">
         </div>
+        {{var_dump($media->categoryBelong)}}
         <div class="form-group">
-            <label for="category">Category:</label>
-            <input id="category" type="text" class="form-control" name="category" value="{{ $media->category }}">
+            <label for="categorySelect">Category:</label>
+            <select name="categorySelect" class="form-control @error('categorySelect') is-invalid @enderror">
+                <option value="">--- Select category ---</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="added_by">Added by:</label>

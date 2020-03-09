@@ -17,9 +17,9 @@ class Media extends Model
         'forchildren',       
     ];
 
-    public function category()
+    public function categoryBelong()
     {
-        return $this->belongsTo(\App\Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
 

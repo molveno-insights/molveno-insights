@@ -12,19 +12,10 @@
 */
 
 Route::get('/', 'MainController@index')->name('welcome');
-// Route::get('/base-layout-test', function() {
-//     return view('layout.adminbase');
-// });
-
-// Route::get('/admin', function() {
-//     return view('layout.admin');
-// });
-
-// Route::get('/base-layout', 'Admin@show')->name('admin.show');
+Route::get('/index', 'VideoController@index')->name('videopage');
 
 Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
-
         Route::get('/', 'Admin@index');
 
         // Create routes
@@ -42,20 +33,18 @@ Route::middleware('auth')->group(function () {
         Route::get('/media/{media}', 'MediaController@show')->name('media.show');
         Route::get('/media', 'MediaController@index')->name('media.index');
 
-        // Route::get('users', function () {
-        //     $users = App\User::paginate(15);
+        Route::get('/category', 'CategoryController@index')->name('category.index');
 
-        //     $users->withPath('custom/url');
+        Route::get('/category/create', 'CategoryController@create')->name('category.create');
+        Route::post('/category/create', 'CategoryController@insert');
 
-        //     //
-        // });
+        Route::get('/category/{category}/edit', 'CategoryController@edit')->name('category.edit');
+        Route::post('/category/{category}/edit', 'CategoryController@update');
 
+        Route::get('/category/{category}/delete', 'CategoryController@delete')->name('category.delete');
 
         Route::get('/home', 'HomeController@index')->name('home');
     });
 });
 
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('index', 'VideoController@index')->name('videopage');
