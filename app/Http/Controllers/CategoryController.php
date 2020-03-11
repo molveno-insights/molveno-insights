@@ -8,7 +8,7 @@ use App\category;
 class category_controller extends Controller
 {
     public function index() {
-
+        return view('category.index', ['categoryList' => $categoryList]);
     }
 
     public function show() {
@@ -32,6 +32,6 @@ class category_controller extends Controller
     }
 
     public function delete() {
-        
+
     }
 }

@@ -29,6 +29,10 @@ class Media extends Model
         $this->save();
     }
 
+    // public function relativelikes(){
+    //     round(($this->likes / ($this->likes + $this->dislikes)) * 100);
+    // }
+
     public function category()
     {
         return $this->belongsTo(\App\Category::class);
