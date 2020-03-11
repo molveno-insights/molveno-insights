@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/category/{category}/delete', 'CategoryController@delete')->name('category.delete');
 
         Route::get('/home', 'HomeController@index')->name('home');
+
+        Route::get('/category', 'CategoryController@index')->name('category.index');
     });
 });
 

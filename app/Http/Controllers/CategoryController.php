@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Category;
-
+use Exception;
 class CategoryController extends Controller
 {
     public function index(Request $request) {
@@ -50,11 +49,32 @@ class CategoryController extends Controller
         return view('category.edit', ['category' => $category]);
     }
 
-    public function update() {
-
+    public function update(Request $request, Category $category) {
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
+        $category->name = $request->input('name');
+        if ($category->save()) {
+            return redirect()->route('category.index', ['category' => $category->id]);
+        } else {
+            echo "Failed to update!";
+        }
     }
 
-    public function delete() {
-        
+    public function delete(Category $category)
+    {
+        try{
+            if ($category->delete()) {
+                return redirect()->route('category.index');
+            } else {
+                echo "Failed to delete category item!";
+            }
+        }catch(Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+
     }
 }
+
+
+

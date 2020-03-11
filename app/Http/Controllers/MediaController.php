@@ -21,11 +21,6 @@ class MediaController extends Controller
 
         $mediaList = $query->paginate(3);
 
-        // $users = DB::table('Media')->paginate(3);
-
-        // return view('user.index', ['users' => $users]);
-
-
         return view('media.index', ['mediaList' => $mediaList]);
     }
 
@@ -46,7 +41,7 @@ class MediaController extends Controller
             'url' => 'required|max:15',
         ]);
 
-        $category = Category::find($request->input('categorySelect'));
+        $category = Category::find($request->input('category'));
 
         if (!$category) {
             echo "Category not valid!";
@@ -55,7 +50,7 @@ class MediaController extends Controller
 
         $media = new Media();
         $media->name = $request->input('name');
-        $media->categoryBelong()->associate($category);
+        $media->category()->associate($category);
         $media->added_by = $request->input('added_by');
         $media->url = $request->input('url');
         $media->forchildren = (bool) $request->input('forchildren', 0);
@@ -80,7 +75,7 @@ class MediaController extends Controller
         ]);
 
         $media->name = $request->input('name');
-        $media->categoryBelong()->associate(Category::find($request->input('categorySelect')));
+        $media->category()->associate(Category::find($request->input('categorySelect')));
         $media->added_by = $request->input('added_by');
         $media->url = $request->input('url');
         $media->forchildren = (bool) $request->input('forchildren', 0);
