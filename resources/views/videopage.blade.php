@@ -35,7 +35,7 @@
                                 (<span id="media-dislike-count-{{ $med->id }}">{{ $med->dislikes }}</span>)
                             </div>
                             <div class="col-12">
-                                <span>{{ round(($med->likes / ($med->likes + $med->dislikes)) * 100) }}% vond deze film leuk</span>
+                                <span>{{ $med->getRatingPercentage() }}% vond deze film leuk</span>
                             </div>
                         </div>
                     </div>
