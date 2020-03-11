@@ -29,7 +29,7 @@ class Media extends Model
         $this->save();
     }
 
-    public function categoryBelong()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }

@@ -19,7 +19,12 @@
         </div>
         <div class="form-group">
             <label for="category">Category:</label>
-            <input id="category" class="form-control" type="text" name="category" value="{{ old('category') }}">
+            <select name="category" id="category" class="form-control @error('categorySelect') is-invalid @enderror">
+                <option value="">--- Select category ---</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="added_by">Added by:</label>

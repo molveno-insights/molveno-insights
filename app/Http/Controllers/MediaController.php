@@ -41,7 +41,7 @@ class MediaController extends Controller
             'url' => 'required|max:15',
         ]);
 
-        $category = Category::find($request->input('categorySelect'));
+        $category = Category::find($request->input('category'));
 
         if (!$category) {
             echo "Category not valid!";
@@ -50,7 +50,7 @@ class MediaController extends Controller
 
         $media = new Media();
         $media->name = $request->input('name');
-        $media->categoryBelong()->associate($category);
+        $media->category()->associate($category);
         $media->added_by = $request->input('added_by');
         $media->url = $request->input('url');
         $media->forchildren = (bool) $request->input('forchildren', 0);
