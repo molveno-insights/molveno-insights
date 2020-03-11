@@ -54,7 +54,15 @@ class CategoryController extends Controller
 
     }
 
-    public function delete() {
-
+    public function delete(Category $category)
+    {
+        if ($category->delete()) {
+            return redirect()->route('category.index');
+        } else {
+            echo "Failed to delete category item!";
+        }
     }
 }
+
+
+
