@@ -4,19 +4,17 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>MLR Video Management System</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"  integrity="sha384-J/JrQzMo5A/ewqt8Xsq6nTHQVVAk/OOhH66uqpFN9+3+MiM427Ub97OApi7o6orj" crossorigin="anonymous" />
         <link rel="stylesheet" href="/css/admin.css" />
-        <!-- test -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
     </head>
 
     <body>
         @guest
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('welcome') }}">
+                <a class="navbar-brand" href="{{ route('login') }}">
                     <img src="/statics/Molveno_logo_white.png" height="50px" />
                 </a>
                 <h3 class="text-white">Hotel Staff</h3>
@@ -34,11 +32,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item {{ (request()->is('admin/home*')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('home') }}">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('admin/media*')) ? 'active' : '' }}" href="{{ route('media.index') }}">Videos</a>
                         </li>
@@ -61,25 +54,9 @@
         <div class="container-fluid">
             @yield('content')
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha384-mlceH9HlqLp7GMKHrj5Ara1+LvdTZVMx4S1U43/NxCvAkzIo8WJ0FE7duLel3wVo" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.0.6/dist/umd/popper.min.js" integrity="sha384-ilN5ySyBtvpP8fGWj3u3gWBvtCbT5l60hHYMGsr0ct8wK0sy8JQRQfLYMrZ9hhI2" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-  <!-- test -->
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-  <!-- this is for the button Delete, to confirm it using a Popper confirmation-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"></script>
-
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
-  <script src="/js/admin.js"></script>
-
+        <script src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js" integrity="sha384-hVry8+iweLeSXncfkJ1oB4r2dRAI2pHZNsSCjTJl4o6hspfUDuGlBKm1nqORIp3S" crossorigin="anonymous"></script>
     </body>
 </html>
-
-
