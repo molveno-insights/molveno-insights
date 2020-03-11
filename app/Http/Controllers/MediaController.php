@@ -21,11 +21,6 @@ class MediaController extends Controller
 
         $mediaList = $query->paginate(3);
 
-        // $users = DB::table('Media')->paginate(3);
-
-        // return view('user.index', ['users' => $users]);
-
-
         return view('media.index', ['mediaList' => $mediaList]);
     }
 
