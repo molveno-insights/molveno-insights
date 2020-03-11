@@ -38,7 +38,6 @@ class Media extends Model
         return $this->belongsTo(Category::class);
     }
 
-
     public function getRatingPercentage()
     {
         if ($this->likes + $this->dislikes > 0) {
@@ -48,4 +47,3 @@ class Media extends Model
         return 0;
     }
 }
-
