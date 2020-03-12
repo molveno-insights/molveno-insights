@@ -36,28 +36,34 @@
                     </div>
                 </div>
             </section>
-            <section>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <h2 id="text">Categories</h2>
-                        {{-- <a id="text" type="button" href="{{ route('videopage') }}">videos</a> --}}
-                    </div>
-                </div>
-            </section>
-            <div class="row ml-4 mr-4">
-                {{-- @foreach ($category->$cat) --}}
-                <div class="col-4">
-                    <div class="card text-center">
+
+        <h2>Sport</h2>
+        <div class="container-fluid p-0 flex-center position-ref full-height">
+
+            <div class="row">
+                @foreach ($sportMedia as $sportMed)
+                <div class="col-sm-12 col-md-4">
+                    <div class="card shadow">
+
+                        <img class="card-img-top" src="https://i3.ytimg.com/vi/{{ $sportMed->url }}/hqdefault.jpg" />
                         <div class="card-body">
-                            {{-- <h2>{{ $cat->name }}</h2> --}}
-                            {{-- <a href="https://www.youtube.com/watch_popup?v={{ $med->url }}"><img class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" /></a>
-                            <i class="fas fa-thumbs-up fa-3x"></i> <i class="fas fa-thumbs-down fa-3x"></i> --}}
+                         <h5 class="card-title"><a href="https://www.youtube.com/watch_popup?v={{ $sportMed->url }}">{{ Illuminate\Support\Str::limit($sportMed->name, 45) }}</a></h5>
+
+                            <div class="col-12">
+                                <i class="media-like fas fa-thumbs-up fa-3x" data-type="like" data-media-id="{{ $sportMed->id }}"></i>
+                                <i class="media-dislike fas fa-thumbs-down fa-3x" data-type="dislike" data-media-id="{{ $sportMed->id }}"></i>
+                            </div>
+                            <div class="col-12">
+                                (<span id="media-like-count-{{ $sportMed->id }}">{{ $sportMed->likes }}</span>)
+                                (<span id="media-dislike-count-{{ $sportMed->id }}">{{ $sportMed->dislikes }}</span>)
+                            </div>
+                            <div class="col-12">
+                                <span>{{ $sportMed->getRatingPercentage() }}% vond deze film leuk</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                {{-- @endforeach --}}
+                @endforeach
             </div>
         </div>
 
