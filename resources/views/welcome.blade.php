@@ -12,11 +12,9 @@
         <title>Molveno Lake Resort</title>
     </head>
     <body>
-        <div class="container-fluid p-0 flex-center position-ref full-height">
-            <section class="jumbotron">
-                <div class="row">
-                    <div class="col-12">
-                        <br>
+
+            <section class="landingpage">
+
                             <div>
                                 <a class="navbar-brand" href="{{ route('welcome') }}">
                                     <img src="/statics/Molveno_logo_white.png" height="50px" />
@@ -29,16 +27,11 @@
                     </div>
 
                     <div class="col-12 hero-text text-center">
-                        <h1>Welcome to Molveno Videos! Unlimited Videos and more!</h1>
-                        {{-- <p>hi</p> --}}
-                        <br>
-                        <br>
-                        <a href="{{ route('videopage') }}"><button>Visit</button></a>
+                        <h1>Molveno Insights</h1>
+                        <p class="lead">Get to know more about Molveno Area with selected inspiring videos</p>
+                        <a href="{{ route('videopage') }}"><button>Watch Videos</button></a>
                     </div>
                     <div class="col-12 text-center">
-                        <br>
-                        <br>
-                        <br>
                         <a href="#text"><i class="fas fa-chevron-circle-down fa-4x"></i></a>
                     </div>
                 </div>
@@ -54,19 +47,20 @@
                 </div>
             </section>
             <div class="row ml-4 mr-4">
-                @foreach ($category->media as $med)
+                {{-- @foreach ($category->$cat) --}}
                 <div class="col-4">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h2>{{ $med->name }}</h2>
+                            {{-- <h2>{{ $cat->name }}</h2> --}}
                             {{-- <a href="https://www.youtube.com/watch_popup?v={{ $med->url }}"><img class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" /></a>
                             <i class="fas fa-thumbs-up fa-3x"></i> <i class="fas fa-thumbs-down fa-3x"></i> --}}
                         </div>
                     </div>
                 </div>
-                @endforeach
+                {{-- @endforeach --}}
             </div>
         </div>
+
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/@popperjs/core@2.0.6/dist/umd/popper.min.js" integrity="sha384-ilN5ySyBtvpP8fGWj3u3gWBvtCbT5l60hHYMGsr0ct8wK0sy8JQRQfLYMrZ9hhI2" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
