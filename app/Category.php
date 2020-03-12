@@ -13,7 +13,12 @@ class Category extends Model
         return $this->hasMany(Media::class);
     }
 
-    public function getRatingPercentage() {
+    public function getRatingPercentage()
+    {
+        if ($this->likes + $this->dislikes > 0) {
+            return round(($this->likes / ($this->likes + $this->dislikes)) * 100);
+        }
+
         return 0;
     }
 }
