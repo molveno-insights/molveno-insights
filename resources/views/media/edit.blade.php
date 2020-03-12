@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <label for="categorySelect">Category:</label>
-            <select name="categorySelect" class="form-control @error('categorySelect') is-invalid @enderror">
+            <select name="categorySelect" class="custom-select form-control @error('categorySelect') is-invalid @enderror">
                 <option value="">--- Select category ---</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}" @if ($media->category->id == $category->id) selected @endif>{{ $category->name }}</option>
