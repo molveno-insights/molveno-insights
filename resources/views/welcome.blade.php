@@ -53,19 +53,19 @@
                     </div>
                 </div>
             </section>
-            {{-- <div class="row ml-4 mr-4">
-                @foreach ($media as $med)
+            <div class="row ml-4 mr-4">
+                @foreach ($category->media as $med)
                 <div class="col-4">
                     <div class="card text-center">
                         <div class="card-body">
                             <h2>{{ $med->name }}</h2>
-                            <a href="https://www.youtube.com/watch_popup?v={{ $med->url }}"><img class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" /></a>
-                            <i class="fas fa-thumbs-up fa-3x"></i> <i class="fas fa-thumbs-down fa-3x"></i>
+                            {{-- <a href="https://www.youtube.com/watch_popup?v={{ $med->url }}"><img class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" /></a>
+                            <i class="fas fa-thumbs-up fa-3x"></i> <i class="fas fa-thumbs-down fa-3x"></i> --}}
                         </div>
                     </div>
                 </div>
                 @endforeach
-            </div> --}}
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/@popperjs/core@2.0.6/dist/umd/popper.min.js" integrity="sha384-ilN5ySyBtvpP8fGWj3u3gWBvtCbT5l60hHYMGsr0ct8wK0sy8JQRQfLYMrZ9hhI2" crossorigin="anonymous"></script>
