@@ -10,6 +10,7 @@
 <div class="ml-8 mr-8">
     <div class="text-center">
         <h2>Edit Media</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $media->url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <form class="col-8 mx-auto" method="POST">
         @csrf
