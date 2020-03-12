@@ -47,4 +47,14 @@
         <button class="btn btn-primary">Save Changes</button>
     </form>
 </div>
+<script>
+    $('input#url').on('input',(e)=>{
+        const ytId = $(e).val();
+        if(ytId.length === 11 ){
+            $(e)removeClass('has-error');
+        }else if(ytId === '' || ytId.length < 11 ){
+            $(e).addClass('has-error')
+        }
+    });
+</script>
 @endsection
