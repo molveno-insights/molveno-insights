@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Media;
+use App\Category;
 
 use Illuminate\Http\Request;
 

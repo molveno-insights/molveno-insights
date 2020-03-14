@@ -10,6 +10,7 @@
 <div class="ml-8 mr-8">
     <div class="text-center">
         <h2>Edit Media</h2>
+        <iframe id="yt_preview" width="560" height="315" src="https://www.youtube.com/embed/{{ $media->url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <form class="col-8 mx-auto" method="POST">
         @csrf
@@ -20,7 +21,7 @@
 
         <div class="form-group">
             <label for="categorySelect">Category:</label>
-            <select name="categorySelect" class="form-control @error('categorySelect') is-invalid @enderror">
+            <select name="categorySelect" class="custom-select form-control @error('categorySelect') is-invalid @enderror">
                 <option value="">--- Select category ---</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}" @if ($media->category->id == $category->id) selected @endif>{{ $category->name }}</option>
@@ -47,4 +48,5 @@
         <button class="btn btn-primary">Save Changes</button>
     </form>
 </div>
+
 @endsection

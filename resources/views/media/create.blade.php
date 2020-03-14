@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label for="category">Category:</label>
-            <select name="category" id="category" class="form-control @error('categorySelect') is-invalid @enderror">
+            <select name="category" id="category" class="custom-select form-control @error('categorySelect') is-invalid @enderror">
                 <option value="">--- Select category ---</option>
                 @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
