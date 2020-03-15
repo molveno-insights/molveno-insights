@@ -29,12 +29,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="added_by">Added by:</label>
-            <input id="added_by" type="text" class="form-control" name="added_by" value="{{ $media->added_by }}">
-        </div>
-        <div class="form-group">
             <label for="url">Youtube ID:</label>
-            <input id="url" type="text" class="form-control" name="url" value="{{ $media->url }}">
+            <input id="url" type="text" class="form-control" onclick="select()" name="url" value="{{ $media->url }}">
         </div>
         <div class="form-group form-check">
             <input id="forchildren" class="form-check-input" type="checkbox" name="forchildren"
