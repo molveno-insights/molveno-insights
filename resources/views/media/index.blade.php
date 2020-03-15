@@ -24,8 +24,8 @@
                 <tbody>
                 @foreach ($mediaList as $media)
                     <tr>
-                        <td><a href="{{ route('media.edit', [$media->id]) }}">{{ $media->name }}</a></td>
                         <td style="width: 150px;"><a href="https://www.youtube.com/embed/{{ $media->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" target="_blank"><img width="125" class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $media->url }}/hqdefault.jpg" /></a></td>
+                        <td><a href="{{ route('media.edit', [$media->id]) }}">{{ $media->name }}</a></td>
                         <td>{{ $media->category->name }}</td>
                         <td><a href="{{ route('media.edit', [$media->id]) }}" class="hover"><i class="fas fa-edit"></i></a></td>
                         <td class="deleteCategory"><a href="{{ route('media.delete', [$media->id]) }}" class="hover"><i class="fas fa-trash-alt"></i></a></td>
