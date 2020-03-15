@@ -5,7 +5,7 @@
     <h2 class="display-4">Media</h2>
     <div class="row">
         <div class="col-md-12">
-            <a type="button" class="btn btn-info" href="{{ route('media.create') }}" style="margin-bottom: 20px;">Add new media</a>
+            <a type="button" class="btn btn-info" href="{{ route('media.create') }}" style="margin-bottom: 20px;">Add media</a>
             <form action="" method="GET" class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2">
                 @csrf
                 <i class="fas fa-search" aria-hidden="true"></i>
@@ -24,11 +24,11 @@
                 <tbody>
                 @foreach ($mediaList as $media)
                     <tr>
-                        <td style="width: 150px;"><a href="https:/youtube.com/watch_popup?v={{ $media->url }}" target="_blank"><img width="125" class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $media->url }}/hqdefault.jpg" /></a></td>
+                        <td style="width: 150px;"><a href="https://www.youtube.com/embed/{{ $media->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" target="_blank"><img width="125" class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $media->url }}/hqdefault.jpg" /></a></td>
                         <td><a href="{{ route('media.edit', [$media->id]) }}" target="_blank">{{ $media->name }}</a></td>
                         <td>{{ $media->category->name }}</td>
-                        <td><a href="{{ route('media.edit', [$media->id]) }}"><i class="fas fa-edit"></i></a></td>
-                        <td class="deleteCategory"><a href="{{ route('media.delete', [$media->id]) }}"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><a href="{{ route('media.edit', [$media->id]) }}" class="hover"><i class="fas fa-edit"></i></a></td>
+                        <td class="deleteCategory"><a href="{{ route('media.delete', [$media->id]) }}" class="hover"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                 @endforeach
                 </tbody>

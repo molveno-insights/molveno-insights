@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Media;
 use App\Category;
 
@@ -19,7 +20,7 @@ class MediaController extends Controller
             $query->where("name", "like", "%" . $search . "%");
         }
 
-        $mediaList = $query->paginate(3);
+        $mediaList = $query->paginate(10);
 
         return view('media.index', ['mediaList' => $mediaList]);
     }
@@ -51,7 +52,7 @@ class MediaController extends Controller
         $media = new Media();
         $media->name = $request->input('name');
         $media->category()->associate($category);
-        $media->added_by = $request->input('added_by');
+        $media->added_by = Auth::user()->name;
         $media->url = $request->input('url');
         $media->forchildren = (bool) $request->input('forchildren', 0);
 

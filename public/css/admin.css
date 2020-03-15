@@ -20,3 +20,11 @@ body {
     color: #138496;
     margin-bottom: 20px;
 }
+
+
+table tr a.hover{
+    visibility: hidden;
+  }
+  table tr:hover a.hover{
+    visibility: visible;
+  }
