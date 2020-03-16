@@ -31,4 +31,4 @@ $('td.deleteCategory a').each(function(i,e){
         }
      });
 
-
+    
