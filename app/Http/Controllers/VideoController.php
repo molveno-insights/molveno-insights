@@ -19,10 +19,19 @@ class VideoController extends Controller
     {
         return view('videopage', ['media' => Media::all(),'categories' => Category::all()]);
     }
-    // public function show($id)
-    // {
-    //     return view('welcome', ['media' => \App\Media::findOrFail($id)]);
-    // }
+    public function like(Media $media)
+    {
+        $media->like();
+    }
+
+    public function dislike(Media $media)
+    {
+        $media->dislike();
+    }
     
+    public function view(Media $media)
+    {
+        $media->view();
+    }
 
 }

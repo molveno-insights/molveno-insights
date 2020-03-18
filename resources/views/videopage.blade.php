@@ -15,16 +15,17 @@
             <h2>{{ $cat->name }}</h2>
             <div class="row">
                 @php
-                $categoryMedia = App\Http\Controllers\VideoController::categoryMedia($cat->id);
+                    $categoryMedia = App\Http\Controllers\VideoController::categoryMedia($cat->id);
                 @endphp
                 @foreach ($categoryMedia as $med)
                 <div class="col-md-3 card shadow" id="media-{{ $med->id }}">
-                    <a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;">
+                    <a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" data-media-id="{{ $med->id }}" class="media-view">
                         <img class="card-img-top" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" />
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;">{{ Illuminate\Support\Str::limit($med->name, 45) }}</a></h5>
+                        <h5 class="card-title"><a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" class="media-view" data-media-id="{{ $med->id }}">{{ Illuminate\Support\Str::limit($med->name, 45) }}</a></h5>
                         <div>
+                            <i class="far fa-eye"></i> <span id="media-view-count-{{ $med->id }}">{{ $med->views }} </span>
                             <i class="media-like fas fa-thumbs-up fa-2x" data-type="like" data-media-id="{{ $med->id }}"></i><span id="media-like-count-{{ $med->id }}">{{ $med->likes }}</span>
                             <i class="media-dislike fas fa-thumbs-down fa-2x" data-type="dislike" data-media-id="{{ $med->id }}"></i><span id="media-dislike-count-{{ $med->id }}">{{ $med->dislikes }}</span>
                         </div>
@@ -106,101 +107,6 @@
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script>
-            function mediaRating(){
-                const mediaId = $(this).attr('data-media-id'),
-                    ratingType = $(this).attr('data-type');
-                    $.ajax({
-                    'type': "POST",
-                    'headers': {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    'url': `/media/${mediaId}/${ratingType}`,
-                    'success': function() {
-
-                        const countSelector = $(`#media-${ratingType}-count-${mediaId}`);
-                        let currentCount = countSelector.html();
-                        countSelector.html(++currentCount);
-                        const likes =  $(`#media-like-count-${mediaId}`).html()/1,
-                                dislikes = $(`#media-dislike-count-${mediaId}`).html()/1,
-                                total = likes+dislikes,
-                                ratingPerc = Math.floor(likes*100/total);
-
-
-                        console.log(ratingPerc)
-                        $(`#media-rating-perc-${mediaId}`).html(ratingPerc);
-                        //$(`#media-rating-perc-icon-${mediaId}`).html(ratingPercIcon(ratingPerc))
-                        ratingPercIcon(ratingPerc,mediaId)
-                    },
-                    'error': function() {
-                        alert("There was an error. Try again please!");
-                    }
-                });
-            }
-            function ratingPercIcon(perc,id){
-                let color
-                if(perc<50){
-                    color = 'red'
-                }else{
-                    color = 'green'
-                }
-                const svgEl = $('<svg></svg>')
-                        .attr('viewBox','0 0 36 36')
-                        .attr('class','circular-chart'),
-                        svgPath = $('<path/>')
-                        .attr('class','circle')
-                        .attr('stroke-dasharray',`${perc},100`)
-                        .attr('style',`stroke: ${color}`)
-                        .attr('d','M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831');
-                svgEl.html(svgPath);
-                $(`#media-rating-perc-icon-${id} path`).attr('stroke-dasharray',`${perc}, 100`).attr('style',`stroke: ${color}`);
-                $(`#media-${id} .media-rating-perc`).attr('style',`color:${color}`);
-                return svgEl;
-
-            }
-            function feedbackModal(e){
-
-                const feedbackQuestion = $('#feedback-question').show(),
-                        feedbackForm = $('#feedback-form').hide(),
-                        feedbackAction = e.target.id.replace('feedback_','');
-                $('.btn-feedback-q').click((e)=>{
-                    feedbackQuestion.hide();
-                    const feedbackAction = e.target.id.replace('feedback_',''),
-                            feedbackFormHtml = $(`#feedback_templ #${feedbackAction}`).html();
-                    // console.log(`#feedback_templ #${e.target.id}`);
-                    feedbackForm.show().html(feedbackFormHtml);
-                    switch(feedbackAction){
-                        case 'suggestvideo':
-                            ytPreview()
-                            break;
-                        default:
-                    }
-                });
-
-            }
-            $('.media-like, .media-dislike').click(mediaRating);
-            $('#videopage_feedback').on('shown.bs.modal',feedbackModal);
-            function ytPreview(){
-                $('.modal input#suggestVideoInput').off().on('input',(e)=>{
-
-                    const ytId = $(e.target).val();
-                    // console.log(ytId)
-                    if(ytId.length === 11 ){
-                        $(e.target).removeClass('is-invalid');
-
-                        $('.modal #yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId)
-                    }else if(ytId === '' || ytId.length < 11 ){
-                        $(e.target).addClass('is-invalid');
-                        $('.modal #yt_preview').hide();
-                    }else{
-                        if(ytId.split('watch?v=')[1]){
-                            $(e.target).val(ytId.split('watch?v=')[1]);
-                            $('.modal #yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId.split('watch?v=')[1])
-                            $(e.target).removeClass('is-invalid');
-                        }
-                    }
-                });
-            }
-        </script>
+        <script src="/js/media.js"></script>
     </body>
 </html>

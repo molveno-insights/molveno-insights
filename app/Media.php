@@ -29,9 +29,13 @@ class Media extends Model
         $this->save();
     }
 
-    // public function relativelikes(){
-    //     round(($this->likes / ($this->likes + $this->dislikes)) * 100);
-    // }
+    public function view()
+    {
+        $this->views++;
+        $this->save();
+    }
+
+    
 
     public function category()
     {

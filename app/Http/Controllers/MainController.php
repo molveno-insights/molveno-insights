@@ -10,8 +10,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $sportMedia = Category::where('name', 'sport')->first()->media()->get();
-        return view('welcome', ['media' => \App\Media::all(), 'sportMedia' => $sportMedia]);
+        return view('welcome', ['media' => \App\Media::all()]);
     }
 
     public function show($id)
@@ -19,13 +18,5 @@ class MainController extends Controller
         return view('welcome', ['media' => \App\Media::findOrFail($id)]);
     }
 
-    public function like(Media $media)
-    {
-        $media->like();
-    }
-
-    public function dislike(Media $media)
-    {
-        $media->dislike();
-    }
+    
 }
