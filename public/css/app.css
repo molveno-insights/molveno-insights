@@ -548,9 +548,11 @@ footer {
 }
 .circular-chart {
   display: block;
-  margin: 10px auto;
   max-width: 50px;
   max-height: 50px;
+}
+.media-rating-perc{
+  margin-top:-35px; padding-left:7px; font-weight:700;
 }
 
 .circle {
