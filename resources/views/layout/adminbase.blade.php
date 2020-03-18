@@ -58,7 +58,7 @@
         <script src="https://unpkg.com/@popperjs/core@2.0.6/dist/umd/popper.min.js" integrity="sha384-ilN5ySyBtvpP8fGWj3u3gWBvtCbT5l60hHYMGsr0ct8wK0sy8JQRQfLYMrZ9hhI2" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js" integrity="sha384-hVry8+iweLeSXncfkJ1oB4r2dRAI2pHZNsSCjTJl4o6hspfUDuGlBKm1nqORIp3S" crossorigin="anonymous"></script>
-        <script src="https://terrylinooo.github.io/jquery.disableAutoFill/assets/js/jquery.disableAutoFill.min.js" integrity="sha384-fKOvHWQDSPEVR2NdvlXtWqI0Bk1bYUGqudSwRKasWZ6Y65BQuPcKGBnpUGK91qCM" crossorigin="anonymous"></script>        
+        <script src="https://cdn.jsdelivr.net/npm/disableautofill/src/jquery.disableAutoFill.min.js" integrity="sha384-fKOvHWQDSPEVR2NdvlXtWqI0Bk1bYUGqudSwRKasWZ6Y65BQuPcKGBnpUGK91qCM" crossorigin="anonymous"></script>
         <script src="/js/app.js"></script>
     </body>
 </html>
