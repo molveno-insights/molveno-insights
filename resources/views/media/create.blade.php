@@ -9,7 +9,8 @@
 </nav>
 <div class="ml-8 mr-8">
     <div class="text-center">
-        <h2>Create Media</h2>
+        <h2>Add Media</h2>
+        <iframe id="yt_preview" width="560" height="315" style="display:none;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <form class="col-8 mx-auto" method="POST">
         @csrf
@@ -19,17 +20,14 @@
         </div>
         <div class="form-group">
             <label for="category">Category:</label>
-            <select name="category" id="category" class="form-control @error('categorySelect') is-invalid @enderror">
+            <select name="category" id="category" class="custom-select form-control @error('categorySelect') is-invalid @enderror">
                 <option value="">--- Select category ---</option>
                 @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <label for="added_by">Added by:</label>
-            <input id="added_by" class="form-control" type="text" name="added_by" value="{{ old('added_by') }}">
-        </div>
+
         <div class="form-group">
             <label for="url">Youtube ID:</label>
             <input id="url" class="form-control" type="text" name="url" value="{{ old('url') }}">

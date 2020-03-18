@@ -6,13 +6,10 @@
     <div class="row">
         <div class="col-md-12">
             <a type="button" class="btn btn-info" href="{{ route('category.create') }}" style="margin-bottom: 20px;">Create new category</a>
-            <form action="" method="GET">
+            <form action="" method="GET" class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2">
                 @csrf
-                <div class="form-group">
-                    <label for="search">Search:</label>
-                    <input id="search" class="form-control" placeholder="Search" type="text" name="search">
-                    <button class="btn btn-primary">Search</button>
-                </div>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input id="search" class="form-control form-control-sm ml-3 w-75" placeholder="Search" aria-label="Search" type="text" name="search">
             </form>
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -30,10 +27,9 @@
                         <td class="deleteCategory"><a href="{{ route('category.delete', [$category->id]) }}"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                 @endforeach
-                {{ $categoryList->links() }}
                 </tbody>
             </table>
-            {{-- {{ $categoryList->links() }} --}}
+            {{ $categoryList->links() }}
         </div>
     </div>
 </div>

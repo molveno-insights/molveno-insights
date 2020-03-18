@@ -15,7 +15,7 @@ class CategoryController extends Controller
             $query->where("name", "like", "%" . $search . "%");
         }
 
-        $categoryList = $query->paginate(3);
+        $categoryList = $query->paginate(10);
 
         return view('category.index', ['categoryList' => $categoryList]);
     }

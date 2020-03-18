@@ -10,7 +10,7 @@
 <div class="ml-8 mr-8">
     <div class="text-center">
         <h2>Edit Media</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $media->url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="yt_preview" width="560" height="315" src="https://www.youtube.com/embed/{{ $media->url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <form class="col-8 mx-auto" method="POST">
         @csrf
@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <label for="categorySelect">Category:</label>
-            <select name="categorySelect" class="form-control @error('categorySelect') is-invalid @enderror">
+            <select name="categorySelect" class="custom-select form-control @error('categorySelect') is-invalid @enderror">
                 <option value="">--- Select category ---</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}" @if ($media->category->id == $category->id) selected @endif>{{ $category->name }}</option>
@@ -29,12 +29,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="added_by">Added by:</label>
-            <input id="added_by" type="text" class="form-control" name="added_by" value="{{ $media->added_by }}">
-        </div>
-        <div class="form-group">
             <label for="url">Youtube ID:</label>
-            <input id="url" type="text" class="form-control" name="url" value="{{ $media->url }}">
+            <input id="url" type="text" class="form-control" onclick="select()" name="url" value="{{ $media->url }}">
         </div>
         <div class="form-group form-check">
             <input id="forchildren" class="form-check-input" type="checkbox" name="forchildren"
@@ -48,4 +44,5 @@
         <button class="btn btn-primary">Save Changes</button>
     </form>
 </div>
+
 @endsection
