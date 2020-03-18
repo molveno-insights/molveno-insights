@@ -12,19 +12,20 @@
         <title>Molveno Lake Resort</title>
     </head>
     <body>
-
-            <section class="landingpage">
+<div class="container-fluid">
+    <div class="row">
+            <div class="landingpage col-12">
 
                             <div>
                                 <a class="navbar-brand" href="{{ route('welcome') }}">
                                     <img src="/statics/Molveno_logo_white.png" height="50px" />
                                 </a>
                             </div>
-                    </div>
 
-                    <div class="col-12 text-center">
+
+                    {{-- <div class="col-12 text-center">
                         <input type="text" placeholder="Search..">
-                    </div>
+                    </div> --}}
 
                     <div class="col-12 hero-text text-center">
                         <h1>Molveno Insights</h1>
@@ -35,14 +36,67 @@
                         <a href="#text"><i class="fas fa-chevron-circle-down fa-4x"></i></a>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+<br>
+<br>
+                    <h2>Guest profiles</h2>
+                    <br>
+                </div>
+                <div class="col-sm-12 text-center user">
 
-        <h2>Sport</h2>
-        <div class="container-fluid p-0 flex-center position-ref full-height">
+                        <div class="col-sm-12 col-md-4 users">
+                            <div class="card" style="width: 300px;">
+                                <img src="/statics/user.png" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Hans Liddel</h5>
+                                    <a href="#" class="btn btn-primary">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 users text-center">
+                            <div class="card" style="width: 300px;">
+                                <img src="/statics/person-girl-flat.png" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Noelle Liddel</h5>
+                                    <a href="#" class="btn btn-primary">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 users">
+                            <div class="card" style="width: 300px;">
+                                <img src="/statics/user.png" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <a href="#" class="btn btn-primary">Login</a>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid">
 
             <div class="row">
+
+                <div class="col-sm-12 text-center">
+                    <br>
+                    <br>
+                    <h2>Categories</h2>
+                    <br>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <br>
+                    <h3>Sport</h3>
+                    <br>
+                </div>
                 @foreach ($sportMedia as $sportMed)
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-3">
                     <div class="card shadow">
 
                         <img class="card-img-top" src="https://i3.ytimg.com/vi/{{ $sportMed->url }}/hqdefault.jpg" />
@@ -62,6 +116,8 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <br>
                 </div>
                 @endforeach
             </div>

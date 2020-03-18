@@ -14,16 +14,24 @@
     </head>
     <body>
         <div class="container-fluid p-0 flex-center position-ref full-height">
-            
+            <br>
+            <div class="row">
+                <br>
+                <div class="col-12 text-center">
+                    <br>
+                    <h1>Molveno videos</h1>
+                    <br>
+                </div>
+            </div>
             <div class="row">
                 @foreach ($media as $med)
                 <div class="col-sm-12 col-md-4">
                     <div class="card shadow">
-                        
+
                         <img class="card-img-top" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" />
                         <div class="card-body">
                          <h5 class="card-title"><a href="https://www.youtube.com/watch_popup?v={{ $med->url }}">{{ Illuminate\Support\Str::limit($med->name, 45) }}</a></h5>
-                            
+
                             <div class="col-12">
                                 <i class="media-like fas fa-thumbs-up fa-3x" data-type="like" data-media-id="{{ $med->id }}"></i>
                                 <i class="media-dislike fas fa-thumbs-down fa-3x" data-type="dislike" data-media-id="{{ $med->id }}"></i>
@@ -37,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                 </div>
                 @endforeach
             </div>
