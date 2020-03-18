@@ -29,16 +29,13 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <div class="input-box">
-                                    <div class="fake-input"></div>
-                                    <input id="password" type="text" onKeyUp="RemoveSavedPassword()" class="form-control @error('password') is-invalid @enderror real-input" name="password" required autocomplete="off">
+                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off">
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
