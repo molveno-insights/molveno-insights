@@ -9,23 +9,36 @@
         <link rel="stylesheet" href="/css/app.css" />
         <title>Molveno Lake Resort</title>
     </head>
-    <body>
+    <body class="bg-dark">
+        <div id="mediaSortOptions">
+            
+            <div class="float-right option" id="most_viewed">Views </div>
+            <div class="float-right option" id="highest_rating">Rating | </div>
+            <div class="float-right option" id="date_added">Date | </div>
+            <div class="float-right label">Sort by : </div>
+        </div>
+        <div id="mediaSortContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
+
+        </div>
         <div class="container-fluid flex-center position-ref full-height">
             @foreach ($categories as $cat)
+            @php
+                $categoryMedia = App\Http\Controllers\VideoController::categoryMedia($cat->id);
+                if(count($categoryMedia)>0){
+
+            @endphp
             <h2>{{ $cat->name }}</h2>
             <div class="row">
-                @php
-                    $categoryMedia = App\Http\Controllers\VideoController::categoryMedia($cat->id);
-                @endphp
+                
                 @foreach ($categoryMedia as $med)
-                <div class="col-md-3 card shadow" id="media-{{ $med->id }}">
+                <div class="col-md-3 card shadow" id="media-{{ $med->id }}" data-media-added="{{ $med->created_at }}">
                     <a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" data-media-id="{{ $med->id }}" class="media-view">
                         <img class="card-img-top" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" />
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" class="media-view" data-media-id="{{ $med->id }}">{{ Illuminate\Support\Str::limit($med->name, 45) }}</a></h5>
                         <div>
-                            <i class="far fa-eye"></i> <span id="media-view-count-{{ $med->id }}">{{ $med->views }} </span>
+                            <i class="far fa-eye fa-2x"></i><span id="media-view-count-{{ $med->id }}">{{ $med->views }} </span>
                             <i class="media-like fas fa-thumbs-up fa-2x" data-type="like" data-media-id="{{ $med->id }}"></i><span id="media-like-count-{{ $med->id }}">{{ $med->likes }}</span>
                             <i class="media-dislike fas fa-thumbs-down fa-2x" data-type="dislike" data-media-id="{{ $med->id }}"></i><span id="media-dislike-count-{{ $med->id }}">{{ $med->dislikes }}</span>
                         </div>
@@ -48,6 +61,9 @@
                 </div>
                 @endforeach
             </div>
+            @php 
+                }
+            @endphp
             @endforeach
         </div>
         <a href="#" class="btn-feedback" data-toggle="modal" data-target="#videopage_feedback">

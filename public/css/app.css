@@ -498,7 +498,7 @@ footer {
     color: white;
 }
 
-.fas {
+.fas,.far {
     padding: 10px;
     color: gray;
 }
@@ -588,4 +588,42 @@ input.real-input, .fake-input {
 input.real-input {
   opacity:0;
   background:transparent;
+}
+
+.bg-dark .card{
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #ffffff26;
+}
+.bg-dark .card,
+.bg-dark .card a,
+.bg-dark .card a:hover,
+.bg-dark .card i.fas,
+.bg-dark .card i.far{
+  color: whitesmoke;
+  font-weight: 700;
+}
+
+
+
+.bg-dark h2{
+  color: whitesmoke;
+  margin-top:25px;
+}
+
+div#mediaSortOptions{
+  color: whitesmoke;
+  font-size: x-large;
+  padding-right: 10px;
+}
+div#mediaSortOptions div.option{
+  padding-left: 10px;
+  cursor: pointer;
+}
+div#mediaSortOptions div.label{
+  opacity: 0.5;
+}
+div#mediaSortOptions div.selected{
+  font-weight: bold;
 }

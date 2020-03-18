@@ -11,8 +11,6 @@ class VideoController extends Controller
     public static function categoryMedia($id)
     {
         return Media::whereIn('category_id',[$id])->get();
-
-        
     }
 
     public function index()

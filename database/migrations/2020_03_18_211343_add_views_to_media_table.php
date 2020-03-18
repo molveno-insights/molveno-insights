@@ -14,7 +14,7 @@ class AddViewsToMediaTable extends Migration
     public function up()
     {
         Schema::table('media', function (Blueprint $table) {
-            $table->integer('views');
+            $table->integer('views')->default(0);
         });
     }
 

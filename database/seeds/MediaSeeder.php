@@ -1,7 +1,8 @@
 <?php
-
+require 'vendor/autoload.php';
 use Illuminate\Database\Seeder;
 use App\Category;
+use Carbon\Carbon;
 
 class MediaSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class MediaSeeder extends Seeder
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
             'forchildren' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('media')->insert([
@@ -26,6 +28,7 @@ class MediaSeeder extends Seeder
             'added_by' => 'Gijs',
             'url' => 'JQIQyso-cWY',
             'forchildren' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('media')->insert([
@@ -34,6 +37,7 @@ class MediaSeeder extends Seeder
             'added_by' => 'Gijs',
             'url' => 'uUN2q7iC2VU',
             'forchildren' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('media')->insert([
@@ -42,6 +46,7 @@ class MediaSeeder extends Seeder
             'added_by' => 'Gijs',
             'url' => 'NaMBUcQQ4js',
             'forchildren' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('media')->insert([
@@ -50,6 +55,7 @@ class MediaSeeder extends Seeder
             'added_by' => 'Gijs',
             'url' => '9kS6fSczcZs',
             'forchildren' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('media')->insert([
@@ -58,6 +64,7 @@ class MediaSeeder extends Seeder
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
             'forchildren' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('media')->insert([
@@ -66,6 +73,7 @@ class MediaSeeder extends Seeder
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
             'forchildren' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
 }

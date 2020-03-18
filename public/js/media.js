@@ -28,10 +28,24 @@ function mediaRating(){
         }
     });
 }
-function mediaView(e){
-    //e.preventDefault();
-    
+(function mediaSort(){
+    $('#mediaSortOptions .option').on('click',(e)=>{
 
+        const mediaSortOptionAction = e.target.id;
+        switch(mediaSortOptionAction){
+            case 'most_viewed' : 
+                break;
+            case 'highest_rating' : 
+                break;
+            case 'date_added' :
+                break;
+        }        
+    });
+})()
+
+
+
+function mediaView(e){
     const mediaId = $(e.target.parentNode).attr('data-media-id') ? $(e.target.parentNode).attr('data-media-id') : $(e.target).attr('data-media-id')
 
     $.ajax({
