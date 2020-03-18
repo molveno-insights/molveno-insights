@@ -34,7 +34,7 @@ $('td.deleteCategory a').each(function(i,e){
     
 function RemoveSavedPassword() {
     
-    if (navigator.userAgent.indexOf('AppleWebKit') === 0) {
+    if (typeof window.webkitConvertPointFromNodeToPage != 'function') {
         let inputValue = $('.real-input').val();
         let numChars = inputValue.length;
         let showText = "";
