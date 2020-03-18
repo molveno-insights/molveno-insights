@@ -32,3 +32,18 @@ $('td.deleteCategory a').each(function(i,e){
      });
 
     
+function RemoveSavedPassword() {
+    
+    if (navigator.userAgent.indexOf('AppleWebKit') === 0) {
+        let inputValue = $('.real-input').val();
+        let numChars = inputValue.length;
+        let showText = "";
+   
+    for (let i = 0; i < numChars; i++) {
+        showText += "&#8226;";
+    }
+
+    $('.fake-input').html(showText);
+    
+   }
+}
