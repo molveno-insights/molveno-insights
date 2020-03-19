@@ -46,6 +46,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/home', 'HomeController@index')->name('home');
 
         Route::get('/category', 'CategoryController@index')->name('category.index');
+
+        Route::get('/contactlist', 'ContactController@index')->name('contact.index');
+
+        Route::prefix('customerserve')->group(function () {
+            Route::get('/contact/{contact}', 'MediaController@show')->name('media.show');
+        });
     });
 });
 
@@ -53,3 +59,5 @@ Auth::routes(['register' => false, 'password.request' => false, 'reset' => false
 
 Route::post('/media/{media}/like', 'MainController@like')->name('videopage.like');
 Route::post('/media/{media}/dislike', 'MainController@dislike')->name('videopage.dislike');
+Route::get('contact', 'ContactController@contact')->name('contact');
+Route::post('sendmessage', 'ContactController@post')->name('message');
