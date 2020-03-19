@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactTable extends Migration
+class UpdatedettContactTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,8 @@ class CreateContactTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('topic')->default(NULL);
-            $table->string('email')->default(NULL);
-            $table->integer('roomnumber')->default(NULL);
-            $table->string('url')->default(NULL);
-            $table->text('text')->default(NULL);
-            $table->timestamps();
+        Schema::table('contact', function (Blueprint $table) {
+            //
         });
     }
 

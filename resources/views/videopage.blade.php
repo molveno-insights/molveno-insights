@@ -91,43 +91,47 @@
 <div id="feedback_templ" style="display:none;">
 
     <div id="complaint">
-        <form class="form-group">
+        <form class="form-group" method="POST">
+            @csrf
             <label for="exampleFormControlTextarea1">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="please enter your emailaddress">
+            <input id="email" type="text" class="form-control" id="email" placeholder="please enter your emailaddress">
             <br>
             <label for="exampleFormControlTextarea1">Please leave your complaint below:</label>
             <textarea class="form-control" id="complaintInput" rows="3"></textarea>
             <br>
-            <button class="btn btn-primary">Send</button>
+            <button class="btn btn-primary" name="formcomplaint">Send</button>
         </form>
     </div>
     <div id="suggestvideo">
-        <div class="form-group">
+        <form class="form-group" method="POST">
+            @csrf
             <label for="exampleFormControlTextarea1">Suggest a video to add:</label>
-            <input type="text" class="form-control" id="suggestVideoInput" placeholder="Enter Youtube URL or Id ">
+            <input id="url" type="text" class="form-control" id="suggestVideoInput" placeholder="Enter Youtube URL or Id ">
             <iframe id="yt_preview" width="100%" height="275" style="display:none;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <br>
-            <button class="btn btn-primary">Send</button>
-        </div>
+            <button class="btn btn-primary" name="formurl">Send</button>
+        </form>
     </div>
     <div id="order_roomservice">
-        <div class="form-group">
+        <form class="form-group" method="POST">
+            @csrf
             <label for="exampleFormControlTextarea1">Your roomnumber:</label>
-            <input type="number" placeholder="please enter your roomnumber" class="form-control" id="roomnumber">
+            <input id="roomnumber" type="number" placeholder="please enter your roomnumber" class="form-control" id="roomnumber">
             <br>
             <label for="exampleFormControlTextarea1">Please describe your wish:</label>
-            <textarea class="form-control" id="roomService" rows="3"></textarea>
+            <textarea id="text" class="form-control" id="roomService" rows="3"></textarea>
             <br>
-            <button class="btn btn-primary">Send</button>
-        </div>
+            <button class="btn btn-primary" name="formroomservice">Send</button>
+        </form>
     </div>
     <div id="feedback">
-        <div class="form-group">
+        <form class="form-group" method="POST">
+            @csrf
             <label for="exampleFormControlTextarea1">Please leave your feedback below:</label>
             <textarea class="form-control" id="feedbackInput" rows="3"></textarea>
             <br>
-            <button class="btn btn-primary">Send</button>
-        </div>
+            <button class="btn btn-primary" name="formfeedback">Send</button>
+        </form>
     </div>
 
 </div>

@@ -13,6 +13,11 @@
 
 Route::get('/', 'MainController@index')->name('welcome');
 Route::get('/index', 'VideoController@index')->name('videopage');
+Route::post('/index', 'ContactController@complaint')->name('complaint');
+Route::post('/index', 'ContactController@url')->name('url');
+Route::post('/index', 'ContactController@feedback')->name('feedback');
+Route::post('/index', 'ContactController@roomservice')->name('roomservice');
+
 
 Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
@@ -59,5 +64,6 @@ Auth::routes(['register' => false, 'password.request' => false, 'reset' => false
 
 Route::post('/media/{media}/like', 'MainController@like')->name('videopage.like');
 Route::post('/media/{media}/dislike', 'MainController@dislike')->name('videopage.dislike');
-Route::get('contact', 'ContactController@contact')->name('contact');
-Route::post('sendmessage', 'ContactController@post')->name('message');
+
+
+// Route::post('complaint', 'ContactController@complaint')->name('complaint');
