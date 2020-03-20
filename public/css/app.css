@@ -25,7 +25,7 @@
   --success: #38c172;
   --info: #6cb2eb;
   --warning: #ffed4a;
-  --danger: #e3342f;
+  --danger: #c5461f;
   --light: #f8f9fa;
   --dark: #343a40;
   --breakpoint-xs: 0;
@@ -69,10 +69,17 @@ body {
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #212529;
+
   text-align: left;
-  background-color: #f8fafc;
-}
+    background: url("/statics/molveno01.jpg") !important;
+    background-size: cover  !important;
+    background-position: center center;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat;
+    padding-top: 75px;;
+
+} 
+
 
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
@@ -592,9 +599,9 @@ input.real-input {
 
 .bg-dark .card{
   padding: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  background-color: #ffffff26;
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 .bg-dark .card,
 .bg-dark .card a,

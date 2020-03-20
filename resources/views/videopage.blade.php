@@ -18,9 +18,11 @@
             <div class="float-right label">Sort by : </div>
         </div>
         <div id="mediaSortContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
-
+        <h2></h2>
+        <div class="float-right close"><i class="fas fa-times"></i></div>    
+        <div class="row"></div>
         </div>
-        <div class="container-fluid flex-center position-ref full-height">
+        <div id="mediaDefaultContainer" class="container-fluid flex-center position-ref full-height">
             @foreach ($categories as $cat)
             @php
                 $categoryMedia = App\Http\Controllers\VideoController::categoryMedia($cat->id);
@@ -38,7 +40,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" class="media-view" data-media-id="{{ $med->id }}">{{ Illuminate\Support\Str::limit($med->name, 45) }}</a></h5>
                         <div>
-                            <i class="far fa-eye fa-2x"></i><span id="media-view-count-{{ $med->id }}">{{ $med->views }} </span>
+                            <i class="far fa-eye fa-2x"></i><span id="media-view-count-{{ $med->id }}" class="media-view-count">{{ $med->views }} </span>
                             <i class="media-like fas fa-thumbs-up fa-2x" data-type="like" data-media-id="{{ $med->id }}"></i><span id="media-like-count-{{ $med->id }}">{{ $med->likes }}</span>
                             <i class="media-dislike fas fa-thumbs-down fa-2x" data-type="dislike" data-media-id="{{ $med->id }}"></i><span id="media-dislike-count-{{ $med->id }}">{{ $med->dislikes }}</span>
                         </div>
@@ -54,7 +56,7 @@
                                 @endphp
                                     <svg viewBox="0 0 36 36" class="circular-chart"><path class="circle" stroke-dasharray="{{ $med->getRatingPercentage() }}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke:{{ $color }};" /></svg>
                                 </div>
-                                <div style="color:{{ $color }};" class="media-rating-perc"><span id="media-rating-perc-{{ $med->id }}">{{ $med->getRatingPercentage() }}</span>%</div>
+                                <div style="color:{{ $color }};" class="media-rating-perc"><span id="media-rating-perc-{{ $med->id }}"  class="media-rating-perc-val">{{ $med->getRatingPercentage() }}</span>%</div>
                             </div>
                         </div>
                     </div>

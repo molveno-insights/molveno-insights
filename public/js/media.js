@@ -29,17 +29,45 @@ function mediaRating(){
     });
 }
 (function mediaSort(){
+    const mediaCard = $('div.card'),
+          mediaSortContainer = $('#mediaSortContainer .row');
+     let mediaSortArr = [];
+     function collMediaCards(){
+        mediaSortArr = [];
+        mediaCard.each(function(i){
+            const thisElId = $(this).attr('id');
+            mediaSortArr.push({ 
+                el : $(this),
+                views : $(`#${thisElId} .media-view-count`).text(),
+                rating : $(`#${thisElId} .media-rating-perc-val`).text(),
+                added : $(this).attr('data-media-added')
+            })
+      });
+     }     
     $('#mediaSortOptions .option').on('click',(e)=>{
-
+        collMediaCards();
         const mediaSortOptionAction = e.target.id;
+              
         switch(mediaSortOptionAction){
             case 'most_viewed' : 
+                mediaSortArr.sort((a,b)=>b.views - a.views);
                 break;
             case 'highest_rating' : 
+                mediaSortArr.sort((a,b)=>b.rating - a.rating);
                 break;
             case 'date_added' :
+                mediaSortArr.sort((a,b)=>b.added - a.added);
                 break;
-        }        
+        }
+        //$.each(mediaSortArr,(item)=>mediaSortContainer.append(item.el)); 
+        mediaSortContainer.parent().show();
+        mediaSortArr.map((item)=>{
+            mediaSortContainer.append(item.el);
+        });
+        $('#mediaDefaultContainer').hide(); 
+        //mediaSortContainer.show();  
+        //$('#mediaDefaultContainer').hide(); 
+        console.log(mediaSortArr)
     });
 })()
 
