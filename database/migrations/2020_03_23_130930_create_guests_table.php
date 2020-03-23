@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactTable extends Migration
+class CreateGuestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateContactTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact', function (Blueprint $table) {
+        Schema::create('guests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('topic')->nullable();
-            $table->string('email')->nullable();
-            $table->integer('roomnumber')->nullable();
-            $table->string('url')->nullable();
-            $table->text('text')->nullable();
+            $table->string('roomnumber');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('email');
+            $table->integer('phonenumber');
             $table->timestamps();
         });
     }
@@ -31,7 +31,7 @@ class CreateContactTable extends Migration
      */
     public function down()
     {
-        Schema::table('contact', function (Blueprint $table) {
+        Schema::table('guests', function (Blueprint $table) {
             //
         });
     }

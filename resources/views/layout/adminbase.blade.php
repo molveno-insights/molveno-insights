@@ -42,6 +42,9 @@
                             <a class="nav-link {{ (request()->is('admin/contact*')) ? 'active' : '' }}" href="{{ route('contact.index') }}">Customer Service</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('admin/guest*')) ? 'active' : '' }}" href="{{ route('guest.index') }}">Guests</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>

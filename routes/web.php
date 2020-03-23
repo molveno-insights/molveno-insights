@@ -54,6 +54,17 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/contactlist', 'ContactController@index')->name('contact.index');
 
+        // guests
+
+        Route::get('/guests', 'GuestController@index')->name('guest.index');
+        Route::get('/guests/create', 'GuestController@create')->name('guest.create');
+        Route::post('/guests/create', 'GuestController@insert');
+        Route::get('/guests/{guests}/edit', 'GuestController@edit')->name('guest.edit');
+        Route::post('/guests/{guests}/edit', 'GuestController@update');
+        Route::get('/guests/{guest}/delete', 'GuestController@delete')->name('guest.delete');
+
+
+
         Route::prefix('customerserve')->group(function () {
             Route::get('/contact/{contact}', 'MediaController@show')->name('media.show');
         });
