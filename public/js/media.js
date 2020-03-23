@@ -30,24 +30,24 @@ function mediaRating(){
 }
 (function mediaSort(){
     const mediaCard = $('div.card'),
-          mediaSortContainer = $('#mediaSortContainer .row');
-     let mediaSortArr = [];
-     function collMediaCards(){
-        mediaSortArr = [];
-        mediaCard.each(function(i){
-            const thisElId = $(this).attr('id');
-            mediaSortArr.push({ 
-                el : $(this),
-                views : $(`#${thisElId} .media-view-count`).text(),
-                rating : $(`#${thisElId} .media-rating-perc-val`).text(),
-                added : $(this).attr('data-media-added')
-            })
-      });
-     }     
+          mediaDefaultContainer = $('#mediaDefaultContainer'),
+          mediaSortContainer = $('#mediaSortContainer .row'),
+          mediaCardsColl = ()=>{
+            mediaSortArr = [];
+            mediaCard.each(function(i){
+                const thisElId = $(this).attr('id');
+                mediaSortArr.push({ 
+                    el : $(this),
+                    views : $(`#${thisElId} .media-view-count`).text(),
+                    rating : $(`#${thisElId} .media-rating-perc-val`).text(),
+                    added : $(this).attr('data-media-added')
+                });
+            });
+        };
+     let mediaSortArr = [];    
     $('#mediaSortOptions .option').on('click',(e)=>{
-        collMediaCards();
-        const mediaSortOptionAction = e.target.id;
-              
+        mediaCardsColl();
+        const mediaSortOptionAction = e.target.id;    
         switch(mediaSortOptionAction){
             case 'most_viewed' : 
                 mediaSortArr.sort((a,b)=>b.views - a.views);
@@ -59,22 +59,23 @@ function mediaRating(){
                 mediaSortArr.sort((a,b)=>b.added - a.added);
                 break;
         }
-        //$.each(mediaSortArr,(item)=>mediaSortContainer.append(item.el)); 
         mediaSortContainer.parent().show();
-        mediaSortArr.map((item)=>{
-            mediaSortContainer.append(item.el);
+        mediaSortArr.map((item)=>mediaSortContainer.append(item.el));
+        mediaDefaultContainer.hide(); 
+        $('#mediaSortcontainer .close').click(()=>{
+            mediaSortContainer.html('').hide();
+            mediaDefaultContainer.show();
         });
-        $('#mediaDefaultContainer').hide(); 
-        //mediaSortContainer.show();  
-        //$('#mediaDefaultContainer').hide(); 
-        console.log(mediaSortArr)
+        
     });
 })()
 
 
 
 function mediaView(e){
-    const mediaId = $(e.target.parentNode).attr('data-media-id') ? $(e.target.parentNode).attr('data-media-id') : $(e.target).attr('data-media-id')
+    const mediaId = $(e.target.parentNode).attr('data-media-id') 
+    ? $(e.target.parentNode).attr('data-media-id') 
+    : $(e.target).attr('data-media-id');
 
     $.ajax({
         type: 'POST',
@@ -101,7 +102,7 @@ function ratingPercIcon(perc,id){
     const svgEl = $('<svg></svg>')
             .attr('viewBox','0 0 36 36')
             .attr('class','circular-chart'),
-            svgPath = $('<path/>')
+          svgPath = $('<path/>')
             .attr('class','circle')
             .attr('stroke-dasharray',`${perc},100`)
             .attr('style',`stroke: ${color}`)
@@ -121,7 +122,6 @@ function feedbackModal(e){
         feedbackQuestion.hide();
         const feedbackAction = e.target.id.replace('feedback_',''),
                 feedbackFormHtml = $(`#feedback_templ #${feedbackAction}`).html();
-        // console.log(`#feedback_templ #${e.target.id}`);
         feedbackForm.show().html(feedbackFormHtml);
         switch(feedbackAction){
             case 'suggestvideo':
@@ -130,19 +130,15 @@ function feedbackModal(e){
             default:
         }
     });
-
 }
 $('.media-like, .media-dislike').click(mediaRating);
 $('.media-view').click(mediaView);
 $('#videopage_feedback').on('shown.bs.modal',feedbackModal);
 function ytPreview(){
     $('.modal input#suggestVideoInput').off().on('input',(e)=>{
-
         const ytId = $(e.target).val();
-        // console.log(ytId)
         if(ytId.length === 11 ){
             $(e.target).removeClass('is-invalid');
-
             $('.modal #yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId)
         }else if(ytId === '' || ytId.length < 11 ){
             $(e.target).addClass('is-invalid');
