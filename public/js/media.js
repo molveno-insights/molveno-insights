@@ -19,34 +19,41 @@ function mediaRating(){
                     ratingPerc = Math.floor(likes*100/total);
 
 
-            console.log(ratingPerc)
+            
             $(`#media-rating-perc-${mediaId}`).html(ratingPerc);
-            ratingPercIcon(ratingPerc,mediaId)
+            ratingPercIcon(ratingPerc,mediaId);
+            mediaCardsColl();
         },
         'error': function() {
             alert("There was an error. Try again please!");
         }
     });
 }
+let mediaSortArr = [];
+const mediaCardsColl = ()=>{
+    mediaSortArr = []
+    $('div.card').each(function(i){
+        const thisElId = $(this).attr('id');
+        mediaSortArr.push({ 
+            el : $(this),
+            category : $(this).parent(),
+            views : $(`#${thisElId} .media-view-count`).text(),
+            rating : $(`#${thisElId} .media-rating-perc-val`).text(),
+            added : $(this).attr('data-media-added')
+        });
+    });
+};
+
 (function mediaSort(){
     const mediaCard = $('div.card'),
           mediaDefaultContainer = $('#mediaDefaultContainer'),
-          mediaSortContainer = $('#mediaSortContainer .row'),
-          mediaCardsColl = ()=>{
-            mediaSortArr = [];
-            mediaCard.each(function(i){
-                const thisElId = $(this).attr('id');
-                mediaSortArr.push({ 
-                    el : $(this),
-                    views : $(`#${thisElId} .media-view-count`).text(),
-                    rating : $(`#${thisElId} .media-rating-perc-val`).text(),
-                    added : $(this).attr('data-media-added')
-                });
-            });
-        };
-     let mediaSortArr = [];    
+          mediaSortContainer = $('#mediaSortContainer .row');
+    
+          mediaCardsColl();
+       
     $('#mediaSortOptions .option').on('click',(e)=>{
-        mediaCardsColl();
+        console.log(mediaSortArr)
+        
         const mediaSortOptionAction = e.target.id;    
         switch(mediaSortOptionAction){
             case 'most_viewed' : 
@@ -62,10 +69,15 @@ function mediaRating(){
         mediaSortContainer.parent().show();
         mediaSortArr.map((item)=>mediaSortContainer.append(item.el));
         mediaDefaultContainer.hide(); 
-        $('#mediaSortcontainer .close').click(()=>{
-            mediaSortContainer.html('').hide();
-            mediaDefaultContainer.show();
-        });
+        
+        
+    });
+    $('.close').click(()=>{
+        console.log(mediaSortArr)
+        mediaSortContainer.parent().hide();
+        mediaDefaultContainer.show();
+        
+        mediaSortArr.map((item)=>item.category.append(item.el));
         
     });
 })()
@@ -73,9 +85,12 @@ function mediaRating(){
 
 
 function mediaView(e){
-    const mediaId = $(e.target.parentNode).attr('data-media-id') 
-    ? $(e.target.parentNode).attr('data-media-id') 
-    : $(e.target).attr('data-media-id');
+    e.preventDefault();
+    const mediaEl = $(e.target.parentNode).attr('data-media-id') 
+    ? e.target.parentNode
+    : e.target,
+    mediaId = $(mediaEl).attr('data-media-id');
+
 
     $.ajax({
         type: 'POST',
@@ -84,8 +99,9 @@ function mediaView(e){
         },
         url: `/media/${mediaId}/view`,
         success: function() {
+
             const mediaViewCountElement = $(`#media-view-count-${mediaId}`);
-            
+            $('#mediaView').attr('src',`${mediaEl.href.split('?')[0]}`).show();
             let mediaViewCount = mediaViewCountElement.text()/1;
             mediaViewCount++
             mediaViewCountElement.html(mediaViewCount);
@@ -116,8 +132,7 @@ function ratingPercIcon(perc,id){
 function feedbackModal(e){
 
     const feedbackQuestion = $('#feedback-question').show(),
-            feedbackForm = $('#feedback-form').hide(),
-            feedbackAction = e.target.id.replace('feedback_','');
+          feedbackForm = $('#feedback-form').hide();
     $('.btn-feedback-q').click((e)=>{
         feedbackQuestion.hide();
         const feedbackAction = e.target.id.replace('feedback_',''),
@@ -131,6 +146,7 @@ function feedbackModal(e){
         }
     });
 }
+
 $('.media-like, .media-dislike').click(mediaRating);
 $('.media-view').click(mediaView);
 $('#videopage_feedback').on('shown.bs.modal',feedbackModal);
@@ -139,14 +155,14 @@ function ytPreview(){
         const ytId = $(e.target).val();
         if(ytId.length === 11 ){
             $(e.target).removeClass('is-invalid');
-            $('.modal #yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId)
+            $('.modal #yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId);
         }else if(ytId === '' || ytId.length < 11 ){
             $(e.target).addClass('is-invalid');
             $('.modal #yt_preview').hide();
         }else{
             if(ytId.split('watch?v=')[1]){
                 $(e.target).val(ytId.split('watch?v=')[1]);
-                $('.modal #yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId.split('watch?v=')[1])
+                $('.modal #yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId.split('watch?v=')[1]);
                 $(e.target).removeClass('is-invalid');
             }
         }

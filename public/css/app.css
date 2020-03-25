@@ -73,7 +73,7 @@ body {
   text-align: left;
     background: url("/statics/molveno01.jpg") !important;
     background-size: cover  !important;
-    background-position: center center;
+    background-position: center center !important;
     background-attachment: fixed !important;
     background-repeat: no-repeat;
     padding-top: 75px;;
@@ -603,6 +603,10 @@ input.real-input {
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 }
+
+i.media-like,i.media-dislike{
+  cursor: pointer;
+}
 .bg-dark .card,
 .bg-dark .card a,
 .bg-dark .card a:hover,
@@ -623,6 +627,9 @@ div#mediaSortOptions{
   color: whitesmoke;
   font-size: x-large;
   padding-right: 10px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
 }
 div#mediaSortOptions div.option{
   padding-left: 10px;

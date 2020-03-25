@@ -10,6 +10,7 @@
         <title>Molveno Lake Resort</title>
     </head>
     <body class="bg-dark">
+        <iframe id="mediaView" src="" frameborder="0" style="display:none; border: 0; width: 100%; height: 100%;z-index:99;position:absolute;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div id="mediaSortOptions">
             
             <div class="float-right option" id="most_viewed">Views </div>
@@ -30,7 +31,7 @@
 
             @endphp
             <h2>{{ $cat->name }}</h2>
-            <div class="row">
+            <div class="row" id="cat-{{ $cat->id }}">
                 
                 @foreach ($categoryMedia as $med)
                 <div class="col-md-3 card shadow" id="media-{{ $med->id }}" data-media-added="{{ $med->created_at }}">
