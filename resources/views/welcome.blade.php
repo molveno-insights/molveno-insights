@@ -21,7 +21,25 @@
             <div class="col-12 hero-text text-center">
                 <h1>Molveno Insights</h1>
                 <p class="lead">Get to know more about Molveno Area with selected inspiring videos</p>
-                <a href="{{ route('videopage') }}"><button>Watch Videos</button></a>
+                <!-- <a href="{{ route('videopage') }}"><button>Watch Videos</button></a> -->
+                <form method="POST">
+                    <div class="container-fluid" style="margin-top: 125px">
+                        <div class="row justify-content-center">
+                            <div class="col-4">
+                                <span class="fa-stack fa-2x" style="font-size: 8em; color: #4191f2">
+                                    <i class="fas fa-circle fa-stack-2x fa-inverse"></i>
+                                    <i class="fas fa-user fa-stack-1x guest-profile-icon"></i>
+                                </span>
+                            </div>
+                            <div class="col-4">
+                                <span class="fa-stack fa-2x" style="font-size: 8em; color: #4191f2">
+                                    <i class="fas fa-circle fa-stack-2x fa-inverse"></i>
+                                    <i class="fas fa-child fa-stack-1x"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             
         </section>
