@@ -76,8 +76,6 @@ body {
     background-position: center center !important;
     background-attachment: fixed !important;
     background-repeat: no-repeat;
-    padding-top: 75px;;
-
 } 
 
 
@@ -599,11 +597,12 @@ input.real-input {
 
 .bg-dark .card{
   padding: 10px;
-  margin: 5px;
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 }
-
+.card{
+  margin:5px;
+}
 i.media-like,i.media-dislike{
   cursor: pointer;
 }

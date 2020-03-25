@@ -53,7 +53,7 @@ const mediaCardsColl = ()=>{
        
     $('#mediaSortOptions .option').on('click',(e)=>{
         console.log(mediaSortArr)
-        
+        window.scrollTo(0, 0);
         const mediaSortOptionAction = e.target.id;    
         switch(mediaSortOptionAction){
             case 'most_viewed' : 
@@ -67,6 +67,7 @@ const mediaCardsColl = ()=>{
                 break;
         }
         mediaSortContainer.parent().show();
+        $('#mediaSortContainer h2').html(`${mediaSortArr.length} videos sorted by ${$(e.target).html().replace(' | ','')}`)
         mediaSortArr.map((item)=>mediaSortContainer.append(item.el));
         mediaDefaultContainer.hide(); 
         
@@ -99,12 +100,21 @@ function mediaView(e){
         },
         url: `/media/${mediaId}/view`,
         success: function() {
-
+            window.scrollTo(0, 0);
+            $("body").css("overflow", "hidden");
+            $('#viewRating').append($(`#media-rating-${mediaId}`))
+            $('#viewClose').show().off().on('click',(e)=>{
+                $(`#media-rating-container-${mediaId}`).append($(`#media-rating-${mediaId}`));
+                $('#mediaView,#viewClose').hide();
+                $('#mediaView').attr('src','');
+                $("body").css("overflow", "auto");
+            });
             const mediaViewCountElement = $(`#media-view-count-${mediaId}`);
-            $('#mediaView').attr('src',`${mediaEl.href.split('?')[0]}`).show();
+            $('#mediaView').attr('src',`${mediaEl.href}`).show();
             let mediaViewCount = mediaViewCountElement.text()/1;
             mediaViewCount++
             mediaViewCountElement.html(mediaViewCount);
+
         }
     });
 }
