@@ -52,9 +52,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/category', 'CategoryController@index')->name('category.index');
 
-        Route::get('/contactlist', 'ContactController@index')->name('contact.index');
 
         // guests
+
 
         Route::get('/guests', 'GuestController@index')->name('guest.index');
         Route::get('/guests/create', 'GuestController@create')->name('guest.create');
@@ -64,12 +64,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/guests/{guest}/delete', 'GuestController@delete')->name('guest.delete');
 
 
-
         Route::prefix('customerserve')->group(function () {
-            Route::get('/contact/{contact}', 'MediaController@show')->name('media.show');
+            Route::get('/enquiries', 'ContactController@index')->name('contact.index');
+            // Route::get('/contact/{contact}', 'ContactController@show')->name('contact.show');
         });
     });
 });
+Route::post('/contactlist/{id}', 'ContactController@insert');
 
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
 

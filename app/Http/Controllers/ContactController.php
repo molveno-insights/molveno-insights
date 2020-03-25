@@ -19,6 +19,33 @@ class ContactController extends Controller
         return view('contact.show', ['contact' => $contact]);
     }
 
+    public function insert(Request $request, $id)
+    {
+        var_dump($id);
+        if ($request->get('form') == 1) {
+            $contact = new Contact();
+            $contact->topic = 'complaint';
+            $contact->text = $request->input('complaintInput');
+            if ($contact->save()) {
+                return redirect()->route('videopage');
+                var_dump("Thanks for sending us feedback!");
+            } else {
+                var_dump("Failed to send!");
+            }
+            // return $request->get('form');
+        } else if ($request->get('form') == 2) {
+            $contact = new Contact();
+            $contact->topic = 'videosuggestion';
+            $contact->text = $request->input('suggestVideoInput');
+            if ($contact->save()) {
+                return redirect()->route('videopage');
+                var_dump("Thanks for sending us feedback!");
+            } else {
+                var_dump("Failed to send!");
+            }
+        }
+
+    }
 
 
     public function feedback(Request $request)

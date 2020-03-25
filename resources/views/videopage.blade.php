@@ -91,11 +91,8 @@
 <div id="feedback_templ" style="display:none;">
 
     <div id="complaint">
-        <form class="form-group" method="POST">
+        <form action="/contactlist/1" name="complaint" class="form-group" method="POST">
             @csrf
-            <label for="exampleFormControlTextarea1">Email</label>
-            <input id="email" type="text" class="form-control" id="email" placeholder="please enter your emailaddress">
-            <br>
             <label for="exampleFormControlTextarea1">Please leave your complaint below:</label>
             <textarea class="form-control" id="complaintInput" rows="3"></textarea>
             <br>
@@ -103,7 +100,7 @@
         </form>
     </div>
     <div id="suggestvideo">
-        <form class="form-group" method="POST">
+        <form action={{ url('/contactlist', ['form' => '2']) }} name="suggestvideo" class="form-group" method="POST">
             @csrf
             <label for="exampleFormControlTextarea1">Suggest a video to add:</label>
             <input id="url" type="text" class="form-control" id="suggestVideoInput" placeholder="Enter Youtube URL or Id ">
@@ -113,11 +110,8 @@
         </form>
     </div>
     <div id="order_roomservice">
-        <form class="form-group" method="POST">
+        <form action={{ url('/contactlist', ['form' => '3']) }} name="roomservice" class="form-group" method="POST">
             @csrf
-            <label for="exampleFormControlTextarea1">Your roomnumber:</label>
-            <input id="roomnumber" type="number" placeholder="please enter your roomnumber" class="form-control" id="roomnumber">
-            <br>
             <label for="exampleFormControlTextarea1">Please describe your wish:</label>
             <textarea id="text" class="form-control" id="roomService" rows="3"></textarea>
             <br>
@@ -125,7 +119,7 @@
         </form>
     </div>
     <div id="feedback">
-        <form class="form-group" method="POST">
+        <form action={{ url('/contactlist', ['form' => '4']) }} name="feedback" class="form-group" method="POST">
             @csrf
             <label for="exampleFormControlTextarea1">Please leave your feedback below:</label>
             <textarea class="form-control" id="feedbackInput" rows="3"></textarea>
