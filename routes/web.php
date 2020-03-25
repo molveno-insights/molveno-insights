@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
-Route::post('/contactlist/{id}', 'ContactController@insert');
+Route::post('/contact', 'ContactController@insert');
 
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
 

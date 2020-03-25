@@ -19,10 +19,9 @@ class ContactController extends Controller
         return view('contact.show', ['contact' => $contact]);
     }
 
-    public function insert(Request $request, $id)
+    public function insert(Request $request)
     {
-        var_dump($id);
-        if ($request->get('form') == 1) {
+        if ($request->get('type') === "complaint") {
             $contact = new Contact();
             $contact->topic = 'complaint';
             $contact->text = $request->input('complaintInput');

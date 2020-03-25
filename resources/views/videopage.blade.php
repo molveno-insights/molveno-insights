@@ -91,16 +91,16 @@
 <div id="feedback_templ" style="display:none;">
 
     <div id="complaint">
-        <form action="/contactlist/1" name="complaint" class="form-group" method="POST">
+        <form action="/contact?type=complaint" name="complaint" class="form-group" method="POST">
             @csrf
             <label for="exampleFormControlTextarea1">Please leave your complaint below:</label>
-            <textarea class="form-control" id="complaintInput" rows="3"></textarea>
+            <textarea class="form-control" name="complaintInput" id="complaintInput" rows="3"></textarea>
             <br>
             <button class="btn btn-primary" name="formcomplaint">Send</button>
         </form>
     </div>
     <div id="suggestvideo">
-        <form action={{ url('/contactlist', ['form' => '2']) }} name="suggestvideo" class="form-group" method="POST">
+        <form action="/contact?type=suggest-video" name="suggestvideo" class="form-group" method="POST">
             @csrf
             <label for="exampleFormControlTextarea1">Suggest a video to add:</label>
             <input id="url" type="text" class="form-control" id="suggestVideoInput" placeholder="Enter Youtube URL or Id ">
@@ -110,7 +110,7 @@
         </form>
     </div>
     <div id="order_roomservice">
-        <form action={{ url('/contactlist', ['form' => '3']) }} name="roomservice" class="form-group" method="POST">
+        <form action="/contact?type=roomservice" name="roomservice" class="form-group" method="POST">
             @csrf
             <label for="exampleFormControlTextarea1">Please describe your wish:</label>
             <textarea id="text" class="form-control" id="roomService" rows="3"></textarea>
@@ -119,7 +119,7 @@
         </form>
     </div>
     <div id="feedback">
-        <form action={{ url('/contactlist', ['form' => '4']) }} name="feedback" class="form-group" method="POST">
+        <form action="/contact?type=feedback" name="feedback" class="form-group" method="POST">
             @csrf
             <label for="exampleFormControlTextarea1">Please leave your feedback below:</label>
             <textarea class="form-control" id="feedbackInput" rows="3"></textarea>
