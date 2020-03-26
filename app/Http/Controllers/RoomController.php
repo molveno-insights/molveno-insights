@@ -3,32 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use App\Room;
 use App\Guest;
 
 class RoomController extends Controller
 {
-    public function chooseroom()
+    public function chooseRoom(Request $request)
     {
+        $roomNumber = $request->cookie('roomnumber');
+        $currentGuest = Guest::findGuestByRoomNumber($roomNumber);
         return view('room.setroom');
     }
 
-    public function setroom(Request $request)
+    public function setRoom(Request $request)
     {
-        $rooms = Guest::find($request->input('roomnumber'));
-
-        if (!$rooms) {
-            echo "Category not valid!";
-            exit;
-        }
-
-        $setroom = new Room();
-        $setroom->roomnumber()->associate($rooms);
-
-        if ($setroom->save()) {
-            return redirect()->route('room.setroom');
-        } else {
-            var_dump("Failed to save!");
-        }
+        $roomNumber = $request->input('roomnumber');
+        Cookie::queue('roomnumber', $roomNumber);
     }
 }

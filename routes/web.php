@@ -63,8 +63,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/guests/{guests}/edit', 'GuestController@update');
         Route::get('/guests/{guest}/delete', 'GuestController@delete')->name('guest.delete');
 
-        Route::get('/setroom', 'RoomController@chooseroom')->name('room.setroom');
-        Route::post('/setroom', 'RoomController@setroom');
+        Route::get('/setroom', 'RoomController@chooseRoom')->name('room.setroom');
+        Route::post('/setroom', 'RoomController@setRoom');
 
         Route::prefix('customerservice')->group(function () {
         Route::get('/enquiries', 'ContactController@index')->name('contact.index');
