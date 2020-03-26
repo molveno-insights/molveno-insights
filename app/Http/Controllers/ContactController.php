@@ -9,9 +9,19 @@ use App\Category;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('contact.index', ['contact' => Contact::all()]);
+        $contactList = [];
+        $query = Media::query();
+
+        $search = $request->input('search');
+        if ($query) {
+            $query->where("name", "like", "%" . $search . "%");
+        }
+
+        $contactList = $query->paginate(10);
+
+        return view('contact.index', ['contactList' => $contactList]);
     }
 
     public function show(Contact $contact)
@@ -24,7 +34,7 @@ class ContactController extends Controller
         if ($request->get('type') === "complaint") {
             $contact = new Contact();
             $contact->topic = 'complaint';
-            $contact->text = $request->input('complaintInput');
+            $contact->text = $request->input('complaintinput');
             if ($contact->save()) {
                 return redirect()->route('videopage');
                 var_dump("Thanks for sending us feedback!");
@@ -32,10 +42,30 @@ class ContactController extends Controller
                 var_dump("Failed to send!");
             }
             // return $request->get('form');
-        } else if ($request->get('form') == 2) {
+        } else if ($request->get('type') === 'suggest-video') {
             $contact = new Contact();
             $contact->topic = 'videosuggestion';
-            $contact->text = $request->input('suggestVideoInput');
+            $contact->text = $request->input('suggestvideoinput');
+            if ($contact->save()) {
+                return redirect()->route('videopage');
+                var_dump("Thanks for sending us feedback!");
+            } else {
+                var_dump("Failed to send!");
+            }
+        } else if ($request->get('type') === 'roomservice') {
+            $contact = new Contact();
+            $contact->topic = 'videosuggestion';
+            $contact->text = $request->input('roomserviceinput');
+            if ($contact->save()) {
+                return redirect()->route('videopage');
+                var_dump("Thanks for sending us feedback!");
+            } else {
+                var_dump("Failed to send!");
+            }
+        } else if ($request->get('type') === 'feedback') {
+            $contact = new Contact();
+            $contact->topic = 'videosuggestion';
+            $contact->text = $request->input('feedbackinput');
             if ($contact->save()) {
                 return redirect()->route('videopage');
                 var_dump("Thanks for sending us feedback!");

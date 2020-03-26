@@ -19,7 +19,7 @@ class CreateGuestsTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email');
-            $table->integer('phonenumber');
+            $table->string('phonenumber');
             $table->timestamps();
         });
     }

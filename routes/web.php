@@ -64,8 +64,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/guests/{guest}/delete', 'GuestController@delete')->name('guest.delete');
 
 
-        Route::prefix('customerserve')->group(function () {
-            Route::get('/enquiries', 'ContactController@index')->name('contact.index');
+        Route::prefix('customerservice')->group(function () {
+        Route::get('/enquiries', 'ContactController@index')->name('contact.index');
             // Route::get('/contact/{contact}', 'ContactController@show')->name('contact.show');
         });
     });
