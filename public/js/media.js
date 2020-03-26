@@ -102,7 +102,8 @@ function mediaView(e){
         success: function() {
             window.scrollTo(0, 0);
             $("body").css("overflow", "hidden");
-            $('#viewRating').append($(`#media-rating-${mediaId}`))
+            $('#viewRating').append($(`#media-rating-${mediaId}`));
+
             $('#viewClose').show().off().on('click',(e)=>{
                 $(`#media-rating-container-${mediaId}`).append($(`#media-rating-${mediaId}`));
                 $('#mediaView,#viewClose').hide();
@@ -110,7 +111,10 @@ function mediaView(e){
                 $("body").css("overflow", "auto");
             });
             const mediaViewCountElement = $(`#media-view-count-${mediaId}`);
-            $('#mediaView').attr('src',`${mediaEl.href}`).show();
+
+            $('#mediaView').attr('src',`${mediaEl.href}`).show()
+            
+            
             let mediaViewCount = mediaViewCountElement.text()/1;
             mediaViewCount++
             mediaViewCountElement.html(mediaViewCount);
@@ -118,6 +122,19 @@ function mediaView(e){
         }
     });
 }
+function mouseMove(e){
+    let x
+    if(e){
+        x = e.screenX
+    } 
+    console.log(x)
+    $(`#viewRating,#viewClose`).show();
+    setTimeout(()=>{
+        $(`#viewRating,#viewClose`).hide();
+        
+    },4000);
+}
+document.getElementById("mediaView").onmousemove = mouseMove;
 function ratingPercIcon(perc,id){
     let color;
     if(perc<50){
