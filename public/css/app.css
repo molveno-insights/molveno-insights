@@ -71,7 +71,11 @@ body {
   line-height: 1.6;
 
   text-align: left;
+<<<<<<< HEAD
     background: url("/statics/molveno01.jpg") !important;
+=======
+    background: url("/statics/molveno01_blue.jpg") !important;
+>>>>>>> 80e5c4a29d27a8b6d5aacd72a72efa7c98bf90f9
     background-size: cover  !important;
     background-position: center center !important;
     background-attachment: fixed !important;
@@ -505,11 +509,24 @@ footer {
 
 .fas,.far {
     padding: 10px;
-    color: gray;
+    color: #fff;
 }
 
-.fas:hover {
-    color: #e50914;;
+#searchMedia{
+  position: fixed;
+  right:400px;
+  top: 10px;
+}
+#searchMediaInput{
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(255, 255, 255);
+}
+#searchMediaInput::placeholder{
+
+  color: rgba(255, 255, 255,50);
+}
+#searchMedia i{
+  cursor: pointer;
 }
 
 .row {

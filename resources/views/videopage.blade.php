@@ -20,6 +20,7 @@
             <div class="float-right option" id="date_added">Date | </div>
             <div class="float-right label">Sort by : </div>
         </div>
+        <div id="searchMedia" class="form-inline d-flex justify-content-center md-form form-sm"><i class="fas fa-search fa-2x"></i><input class="form-control" id="searchMediaInput" placeholder="Search media" style="display:none;" /></div>
         <div id="mediaSortContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
         <h2></h2>
         <div class="float-right close" id="sortClose"><i class="fas fa-times"></i></div>    
@@ -74,7 +75,7 @@
             @endforeach
         </div>
         <a href="#" class="btn-feedback" data-toggle="modal" data-target="#videopage_feedback">
-            <i class="fas fa-exclamation"></i>
+            <i class="fas fa-exclamation"  style="color:gray !important;"></i>
         </a>
         <div class="modal" tabindex="-1" role="dialog" id="videopage_feedback">
             <div class="modal-dialog modal-lg" role="document">

@@ -178,3 +178,27 @@ function ytPreview(){
         }
     });
 }
+
+(function mediaSearch(){
+    const mediaSearchInput = $('#searchMedia input')
+    $('#searchMedia i').on('click',(e)=>{
+        mediaCardsColl();
+        mediaSearchInput.toggle().focus().on('input',(e)=>{
+            const searchQuery = e.target.value;
+            
+            mediaSortArr.map((item)=>{
+                const itemEl = item.el,
+                      itemId = itemEl.attr('id'),
+                      itemTitle = $(`#${itemId} .card-title a`).html();
+                if(!itemTitle.toLowerCase().includes(searchQuery.toLowerCase())){
+                    $(item.el).hide()
+                }else{
+                    $(item.el).show()
+                }
+            })
+        }).on('blur',(e)=>{
+            $('.card').show();
+            $(e.target).val('').hide();
+        });
+    });
+})()
