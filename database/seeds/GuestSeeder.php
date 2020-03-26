@@ -12,7 +12,7 @@ class GuestSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('guest')->insert([
+        DB::table('guests')->insert([
             'roomnumber' => 12,
             'name' => 'Gijs',
             'surname' => 'Machielsen',

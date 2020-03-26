@@ -28,7 +28,6 @@
                 @endforeach
                 </tbody>
             </table>
-            {{ $contactList->links() }}
         </div>
     </div>
 </div>

@@ -12,14 +12,7 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         $contactList = [];
-        $query = Media::query();
-
-        $search = $request->input('search');
-        if ($query) {
-            $query->where("name", "like", "%" . $search . "%");
-        }
-
-        $contactList = $query->paginate(10);
+        $contactList = Contact::all();
 
         return view('contact.index', ['contactList' => $contactList]);
     }
@@ -54,7 +47,7 @@ class ContactController extends Controller
             }
         } else if ($request->get('type') === 'roomservice') {
             $contact = new Contact();
-            $contact->topic = 'videosuggestion';
+            $contact->topic = 'roomservice';
             $contact->text = $request->input('roomserviceinput');
             if ($contact->save()) {
                 return redirect()->route('videopage');
@@ -64,7 +57,7 @@ class ContactController extends Controller
             }
         } else if ($request->get('type') === 'feedback') {
             $contact = new Contact();
-            $contact->topic = 'videosuggestion';
+            $contact->topic = 'feedback';
             $contact->text = $request->input('feedbackinput');
             if ($contact->save()) {
                 return redirect()->route('videopage');
