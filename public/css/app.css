@@ -513,6 +513,14 @@ footer {
   right:400px;
   top: 10px;
 }
+#searchMediaInput{
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(255, 255, 255);
+}
+#searchMediaInput::placeholder{
+
+  color: rgba(255, 255, 255,50);
+}
 #searchMedia i{
   cursor: pointer;
 }
