@@ -18,5 +18,9 @@ class MainController extends Controller
         return view('welcome', ['media' => \App\Media::findOrFail($id)]);
     }
 
-    
+    public function profile(Request $request) 
+    {
+        session(['profile' => $request->input('profile')]);
+        return redirect('index/');
+    }
 }

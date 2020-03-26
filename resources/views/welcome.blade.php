@@ -31,6 +31,7 @@
                 <div class="row justify-content-center">
                     <div class="col-4">
                         <form id="select-profile-default" method="POST">
+                            @csrf
                             <input type="hidden" name="profile" value="default">
                             <span tabindex="1" onclick="document.getElementById('select-profile-default').submit();" class="fa-stack fa-2x" style="font-size: 8em; color: #4191f2; cursor: pointer;">
                                 <i class="fas fa-circle fa-stack-2x fa-inverse"></i>
@@ -40,6 +41,7 @@
                     </div>
                     <div class="col-4">
                         <form id="select-profile-kids" method="POST">
+                            @csrf
                             <input type="hidden" name="profile" value="kids">
                             <span tabindex="1" onclick="document.getElementById('select-profile-kids').submit();" class="fa-stack fa-2x" style="font-size: 8em; color: #4191f2; cursor: pointer;">
                                 <i class="fas fa-circle fa-stack-2x fa-inverse"></i>

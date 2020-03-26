@@ -10,6 +10,9 @@
         <title>Molveno Lake Resort</title>
     </head>
     <body class="bg-dark">
+        <div id="viewRating" style="position:absolute;bottom:45px;z-index:112;color:#fff !important;"></div>
+        <div class="float-right" id="viewClose" style="display:none;z-index:100;position:absolute;top:10px;right:150px;text-align:center;font-size:1.5em;color:#fff;cursor:pointer" ><i class="fas fa-times" style="color:#fff !important;"></i> Close</div>
+        <iframe id="mediaView" src="" frameborder="0" style="display:none; border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div id="mediaSortOptions">
             
             <div class="float-right option" id="most_viewed">Views </div>
@@ -18,9 +21,11 @@
             <div class="float-right label">Sort by : </div>
         </div>
         <div id="mediaSortContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
-
+        <h2></h2>
+        <div class="float-right close" id="sortClose"><i class="fas fa-times"></i></div>    
+        <div class="row"></div>
         </div>
-        <div class="container-fluid flex-center position-ref full-height">
+        <div id="mediaDefaultContainer" class="container-fluid flex-center position-ref full-height">
             @foreach ($categories as $cat)
             @php
                 $categoryMedia = App\Http\Controllers\VideoController::categoryMedia($cat->id);
@@ -28,7 +33,7 @@
 
             @endphp
             <h2>{{ $cat->name }}</h2>
-            <div class="row">
+            <div class="row" id="cat-{{ $cat->id }}">
                 
                 @foreach ($categoryMedia as $med)
                 <div class="col-md-3 card shadow" id="media-{{ $med->id }}" data-media-added="{{ $med->created_at }}">
@@ -37,10 +42,12 @@
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" class="media-view" data-media-id="{{ $med->id }}">{{ Illuminate\Support\Str::limit($med->name, 45) }}</a></h5>
-                        <div>
-                            <i class="far fa-eye fa-2x"></i><span id="media-view-count-{{ $med->id }}">{{ $med->views }} </span>
+                        <div id="media-rating-container-{{ $med->id }}">
+                        <div id="media-rating-{{ $med->id }}">
+                            <i class="far fa-eye fa-2x"></i><span id="media-view-count-{{ $med->id }}" class="media-view-count">{{ $med->views }} </span>
                             <i class="media-like fas fa-thumbs-up fa-2x" data-type="like" data-media-id="{{ $med->id }}"></i><span id="media-like-count-{{ $med->id }}">{{ $med->likes }}</span>
                             <i class="media-dislike fas fa-thumbs-down fa-2x" data-type="dislike" data-media-id="{{ $med->id }}"></i><span id="media-dislike-count-{{ $med->id }}">{{ $med->dislikes }}</span>
+                        </div>
                         </div>
                         <div class="float-right" style="margin-top:-50px;">
                             <div style="width:50px;">
@@ -54,7 +61,7 @@
                                 @endphp
                                     <svg viewBox="0 0 36 36" class="circular-chart"><path class="circle" stroke-dasharray="{{ $med->getRatingPercentage() }}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke:{{ $color }};" /></svg>
                                 </div>
-                                <div style="color:{{ $color }};" class="media-rating-perc"><span id="media-rating-perc-{{ $med->id }}">{{ $med->getRatingPercentage() }}</span>%</div>
+                                <div style="color:{{ $color }};" class="media-rating-perc"><span id="media-rating-perc-{{ $med->id }}"  class="media-rating-perc-val">{{ $med->getRatingPercentage() }}</span>%</div>
                             </div>
                         </div>
                     </div>

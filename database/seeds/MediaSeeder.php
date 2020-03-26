@@ -18,7 +18,7 @@ class MediaSeeder extends Seeder
             'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
-            'forchildren' => 1,
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
@@ -27,7 +27,7 @@ class MediaSeeder extends Seeder
             'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'JQIQyso-cWY',
-            'forchildren' => 1,
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
@@ -36,7 +36,7 @@ class MediaSeeder extends Seeder
             'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'uUN2q7iC2VU',
-            'forchildren' => 1,
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
@@ -63,7 +63,7 @@ class MediaSeeder extends Seeder
             'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
-            'forchildren' => 1,
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
@@ -72,7 +72,7 @@ class MediaSeeder extends Seeder
             'category_id' => Category::all()->random()->id,
             'added_by' => 'Gijs',
             'url' => 'DvwmK6gDNyA',
-            'forchildren' => 1,
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
