@@ -505,11 +505,16 @@ footer {
 
 .fas,.far {
     padding: 10px;
-    color: gray;
+    color: #fff;
 }
 
-.fas:hover {
-    color: #e50914;;
+#searchMedia{
+  position: fixed;
+  right:400px;
+  top: 10px;
+}
+#searchMedia i{
+  cursor: pointer;
 }
 
 .row {
