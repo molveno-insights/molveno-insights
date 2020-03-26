@@ -17,4 +17,9 @@ class Guest extends Model
         'email',
         'phonenumber',
     ];
+
+    public static function findGuestByRoomNumber(int $roomNumber)
+    {
+        return Guest::where('roomnumber', $roomNumber)->first();
+    }
 }
