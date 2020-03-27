@@ -10,7 +10,12 @@ class VideoController extends Controller
 {
     public static function categoryMedia($id)
     {
-        return Media::whereIn('category_id',[$id])->get();
+        if (session('profile')==='kids') {
+            return Media::where([['category_id',$id],['forchildren', 1]])->get();
+        }
+        elseif (session('profile')==='default') {
+            return Media::whereIn('category_id',[$id])->get();
+        }
     }
 
     public function index()

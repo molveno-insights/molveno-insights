@@ -14,12 +14,18 @@ class CategorySeeder extends Seeder
     {
         DB::table('category')->insert(
             [
-                ["name" => "Sport"],
-                ["name" => "Buiten"],
-                ["name" => "Strand wandelen"],
-                ["name" => "Eten"],
-                ["name" => "Hiken"],
-                ["name" => "Uitgaan"]
+                ["name" => "Sports"],
+                ["name" => "Outside"],
+                ["name" => "Beach"],
+                ["name" => "Food"],
+                ["name" => "Hiking"],
+                ["name" => "Nightlife"],
+                ["name" => "Movies"],
+                ["name" => "Series"],
+                ["name" => "Biking"],
+                ["name" => "Vlogs"],
+                ["name" => "Activities"],
+                ["name" => "Sightings"]
             ]
         );
     }

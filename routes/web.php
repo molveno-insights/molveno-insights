@@ -54,3 +54,4 @@ Auth::routes(['register' => false, 'password.request' => false, 'reset' => false
 Route::post('/media/{media}/like', 'VideoController@like')->name('videopage.like');
 Route::post('/media/{media}/dislike', 'VideoController@dislike')->name('videopage.dislike');
 Route::post('/media/{media}/view', 'VideoController@view')->name('videopage.view');
+Route::post('/', 'MainController@profile');
