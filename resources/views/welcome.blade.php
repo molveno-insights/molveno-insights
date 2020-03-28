@@ -14,13 +14,13 @@
     <title>Molveno Lake Resort</title>
 </head>
 
-<body>
+<body class="bg-dark">
 
 
     <section class="landingpage">
         <div>
             <a class="navbar-brand" href="{{ route('welcome') }}">
-                <img src="/statics/Molveno_logo_white.png" height="50px" />
+                <img src="/statics/logoMolvenoInsights.png" height="100px" />
             </a>
         </div>
         <div class="col-12 hero-text text-center">
@@ -29,7 +29,7 @@
             <!-- <a href="{{ route('videopage') }}"><button>Watch Videos</button></a> -->
             <div class="container-fluid" style="margin-top: 125px">
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div class="col-2">
                         <form id="select-profile-default" method="POST">
                             @csrf
                             <input type="hidden" name="profile" value="default">
@@ -37,9 +37,10 @@
                                 <i class="fas fa-circle fa-stack-2x fa-inverse"></i>
                                 <i class="fas fa-user fa-stack-1x guest-profile-icon"></i>
                             </span>
+                            <p style="margin-left:50px;font-size: 3em; color: #fff;">Default</p>
                         </form>
                     </div>
-                    <div class="col-4">
+                    <div class="col-2">
                         <form id="select-profile-kids" method="POST">
                             @csrf
                             <input type="hidden" name="profile" value="kids">
@@ -47,6 +48,7 @@
                                 <i class="fas fa-circle fa-stack-2x fa-inverse"></i>
                                 <i class="fas fa-child fa-stack-1x"></i>
                             </span>
+                            <p style="margin-left:50px;font-size: 3em; color: #fff;">Kids</p>
                         </form>
                     </div>
                 </div>

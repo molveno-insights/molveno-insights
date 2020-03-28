@@ -12,7 +12,8 @@
     <body class="bg-dark">
         <div id="viewRating" style="position:absolute;bottom:45px;z-index:112;color:#fff !important;"></div>
         <div class="float-right" id="viewClose" style="display:none;z-index:100;position:absolute;top:10px;right:150px;text-align:center;font-size:1.5em;color:#fff;cursor:pointer" ><i class="fas fa-times" style="color:#fff !important;"></i> Close</div>
-        <iframe id="mediaView" src="" frameborder="0" style="display:none; border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="mediaView_" src="" frameborder="0" style="display:none; pointer-events: none;border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div id="mediaView" style="display:none; pointer-events: none;border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;"></div>
         <div id="mediaSortOptions">
             
             <div class="float-right option" id="most_viewed">Views </div>
@@ -21,6 +22,11 @@
             <div class="float-right label">Sort by : </div>
         </div>
         <div id="searchMedia" class="form-inline d-flex justify-content-center md-form form-sm"><i class="fas fa-search fa-2x"></i><input class="form-control" id="searchMediaInput" placeholder="Search media" style="display:none;" /></div>
+        <div id="mediaSearchContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
+        <h2></h2>
+         
+        <div class="row"></div>
+        </div>
         <div id="mediaSortContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
         <h2></h2>
         <div class="float-right close" id="sortClose"><i class="fas fa-times"></i></div>    
@@ -38,7 +44,7 @@
                 
                 @foreach ($categoryMedia as $med)
                 <div class="col-md-3 card shadow" id="media-{{ $med->id }}" data-media-added="{{ $med->created_at }}">
-                    <a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=1;controls=1;hl=en;fs=0;color=white;modestbranding=1;showinfo=0" data-media-id="{{ $med->id }}" class="media-view">
+                    <a href="https://www.youtube.com/embed/{{ $med->url }}?rel=0&amp;enablejsapi=1;autoplay=1;fs=0;autohide=0;hd=1;controls=1;hl=en;fs=0;color=white;modestbranding=1;showinfo=0" data-media-id="{{ $med->id }}" class="media-view">
                         <img class="card-img-top" src="https://i3.ytimg.com/vi/{{ $med->url }}/hqdefault.jpg" />
                     </a>
                     <div class="card-body">
@@ -110,9 +116,11 @@
             </div>
             <div id="suggestvideo">
                 <div class="form-group">
+                <h3 id="yt_title"></h3>
                     <label for="exampleFormControlTextarea1">Suggest a video to add:</label>
                     <input type="text" class="form-control" id="suggestVideoInput" placeholder="Enter Youtube URL or Id ">
-                    <iframe id="yt_preview" width="100%" height="275" style="display:none;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                    <iframe id="yt_preview" width="100%" height="400" style="display:none;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
             <div id="order_roomservice">
@@ -131,6 +139,8 @@
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
         <script src="/js/media.js"></script>
     </body>
 </html>

@@ -5,7 +5,7 @@
     <h2 class="display-4">Media</h2>
     <div class="row">
         <div class="col-md-12">
-            <a type="button" class="btn btn-info" href="{{ route('media.create') }}" style="margin-bottom: 20px;">Add media</a>
+            <a type="button" class="btn btn-info" href="{{ route('media.create') }}" style="margin-bottom: 20px;">Add video</a>
             <form action="" method="GET" class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2">
                 @csrf
                 <i class="fas fa-search" aria-hidden="true"></i>

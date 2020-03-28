@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use App\Media;
 use App\Category;
-
-use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
@@ -20,8 +20,20 @@ class VideoController extends Controller
 
     public function index()
     {
-        return view('videopage', ['media' => Media::all(),'categories' => Category::all()]);
+        return view('videopage', ['media' => Media::all(),'categories' => Category::orderBy('name')->get()]);
     }
+    public function search(Request $request)
+    {
+        $query = Media::query();
+
+        $search = $request->input('q');
+        if ($query) {
+            $query->where("name", "like", "%" . $search . "%");
+        }
+
+        return $query->get()->toJson();
+    }
+
     public function like(Media $media)
     {
         $media->like();
