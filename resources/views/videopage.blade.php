@@ -13,24 +13,23 @@
         <div id="viewRating" style="position:absolute;bottom:45px;z-index:112;color:#fff !important;"></div>
         <div class="float-right" id="viewClose" style="display:none;z-index:100;position:absolute;top:10px;right:150px;text-align:center;font-size:1.5em;color:#fff;cursor:pointer" ><i class="fas fa-times" style="color:#fff !important;"></i> Close</div>
         <iframe id="mediaView_" src="" frameborder="0" style="display:none; pointer-events: none;border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div id="mediaView" style="display:none; pointer-events: none;border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;"></div>
+        <div id="mediaView" style="display:none; border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;"></div>
         <div id="mediaSortOptions">
             
             <div class="float-right option" id="most_viewed">Views </div>
             <div class="float-right option" id="highest_rating">Rating | </div>
             <div class="float-right option" id="date_added">Date | </div>
+            <div class="float-right option selected" id="category">Category | </div>
             <div class="float-right label">Sort by : </div>
         </div>
         <div id="searchMedia" class="form-inline d-flex justify-content-center md-form form-sm"><i class="fas fa-search fa-2x"></i><input class="form-control" id="searchMediaInput" placeholder="Search media" style="display:none;" /></div>
         <div id="mediaSearchContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
-        <h2></h2>
-         
-        <div class="row"></div>
+            <h2></h2>
+            <div class="row"></div>
         </div>
         <div id="mediaSortContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
-        <h2></h2>
-        <div class="float-right close" id="sortClose"><i class="fas fa-times"></i></div>    
-        <div class="row"></div>
+            <h2></h2>
+            <div class="row"></div>
         </div>
         <div id="mediaDefaultContainer" class="container-fluid flex-center position-ref full-height">
             @foreach ($categories as $cat)

@@ -51,6 +51,7 @@ const mediaCardsColl = ()=>{
           mediaCardsColl();
        
     $('#mediaSortOptions .option').on('click',(e)=>{
+        $('#searchMediaInput').hide().val('');
         $('#mediaSortOptions .option').removeClass('selected');
         $(e.target).addClass('selected');
         window.scrollTo(0, 0);
@@ -65,22 +66,28 @@ const mediaCardsColl = ()=>{
             case 'date_added' :
                 mediaSortArr.sort((a,b)=>b.added - a.added);
                 break;
+            case 'category' :
+                $('#mediaSortContainer').hide();
+                mediaDefaultContainer.show()
+                mediaSortArr.map((item)=>item.category.append(item.el));
+                break;
         }
-        mediaSortContainer.parent().show();
-        $('#mediaSortContainer h2').html(`${mediaSortArr.length} videos sorted by ${$(e.target).html().replace(' | ','')}`)
-        mediaSortArr.map((item)=>mediaSortContainer.append(item.el));
-        mediaDefaultContainer.hide(); 
+        if(mediaSortOptionAction!='category'){
+            mediaSortContainer.parent().show();
+            $('#mediaSortContainer h2').html(`${mediaSortArr.length} videos sorted by ${$(e.target).html().replace(' | ','')}`)
+            mediaSortArr.map((item)=>mediaSortContainer.append(item.el));
+            mediaDefaultContainer.hide(); 
+        }else{
+            mediaDefaultContainer.show();
+        }
+        
+      
+        $('#mediaSearchContainer').hide();
+
         
         
     });
-    $('.close').click(()=>{
-        console.log(mediaSortArr)
-        mediaSortContainer.parent().hide();
-        mediaDefaultContainer.show();
-        
-        mediaSortArr.map((item)=>item.category.append(item.el));
-        
-    });
+    
 })()
 
 
@@ -111,6 +118,7 @@ function mediaView(e){
         if (event.data == YT.PlayerState.PLAYING && !done) {
           //setTimeout(stopVideo, 6000);
           //done = true;
+          console.log(event)
         }
       }
       function stopVideo() {
@@ -130,7 +138,8 @@ function mediaView(e){
             $('#viewClose').show().off().on('click',(e)=>{
                 $(`#media-rating-container-${mediaId}`).append($(`#media-rating-${mediaId}`));
                 $('#mediaView,#viewClose').hide();
-                $('#mediaView').attr('src','');
+                //$('#mediaView').attr('src','');
+                stopVideo()
                 $("body").css("overflow", "auto");
             });
             const mediaViewCountElement = $(`#media-view-count-${mediaId}`);
@@ -159,7 +168,7 @@ function mouseMove(e){
     
     $(`#viewRating,#viewClose`).show();
     setTimeout(()=>{
-        $(`#viewRating,#viewClose`).hide();
+        //$(`#viewRating,#viewClose`).hide();
         
     },4000);
 }
@@ -235,14 +244,14 @@ function ytPreview(){
         }
     });
 }
-function mediaCard(item){
+function mediaCardEl(item){
     const mediaCard = $('<div></div>')
             .addClass('col-md-3 card shadow')
             .attr('id',`media-${item.id}`),
           mediaYTurl = `https://www.youtube.com/embed/${item.url}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=1;controls=1;hl=en;fs=0;color=white;modestbranding=1;showinfo=0`,
           mediaYTthumbnail = $('<img />')
             .addClass('card-img-top')
-            .attr('src',`https://i3.ytimg.com/vi/${item.url}/hqdefault.jpg`)
+            .attr('src',`https://i3.ytimg.com/vi/${item.url}/hqdefault.jpg`),
           mediaViewLink = $('<a></a>')
             .addClass('media-view')
             .attr('href',mediaYTurl)
@@ -250,7 +259,7 @@ function mediaCard(item){
             .append(mediaYTthumbnail),
           mediaCardTitle = $('<h5></h5>')
             .addClass('card-title')
-            .html(`<a href="${mediaYTurl}" class="media-view" data-media-id="${item.id}">${item.name}</a>`)
+            .html(`<a href="${mediaYTurl}" class="media-view" data-media-id="${item.id}">${item.name}</a>`),
           mediaCardBody = $('<div></div>')
             .addClass('card-body'),
           mediaRatingContainer = $('<div></div>')
@@ -261,7 +270,7 @@ function mediaCard(item){
             .append(`<i class="media-like fas fa-thumbs-up fa-2x" data-type="like" data-media-id="${item.id}"></i><span id="media-like-count-${item.id}">${item.likes}</span>`)
             .append(`<i class="media-dislike fas fa-thumbs-down fa-2x" data-type="dislike" data-media-id="${item.id}"></i><span id="media-dislike-count-${item.id}">${item.dislikes}</span>`);
     const mediaRatingPerc = Math.floor( item.likes / ( item.likes + item.dislikes ) * 100 ),
-          mediaRatingPercColor = mediaRatingPerc < 50 ? 'red' : 'green';
+          mediaRatingPercColor = mediaRatingPerc < 50 ? 'red' : 'green',
           mediaRatingPercIcon = $(`<div class="float-right" style="margin-top:-50px;"><div style="width:50px;"><div class="circ_perc" id="media-rating-perc-icon-${item.id}"><svg viewBox="0 0 36 36" class="circular-chart"><path class="circle" stroke-dasharray="${mediaRatingPerc}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke:${mediaRatingPercColor};" /></svg></div><div style="color:${mediaRatingPercColor};" class="media-rating-perc"><span id="media-rating-perc-${item.id}"  class="media-rating-perc-val">${mediaRatingPerc}</span>%</div></div></div>`);
     mediaRatingContainer.append(mediaRatingEl)
     mediaCardBody.append(mediaCardTitle);
@@ -275,51 +284,37 @@ function mediaCard(item){
 (function mediaSearch(){
     const mediaSearchInput = $('#searchMedia input')
     $('#searchMedia i').on('click',(e)=>{
-        const mediaCard = $('<div></div>').addClass('col-md-3 card shadow');
+       
         
         mediaSearchInput.toggle().focus().on('input',(e)=>{
-            $.post('api/search',{
-                q : e.target.value
-            },(res)=>{
-                console.log(JSON.parse(res));
-
-            });
-            /*
-            const searchArr = [];
-            const searchQuery = e.target.value;
-            if(searchQuery!=''){
-                console.log(mediaSortArr)
-                mediaSortArr.map((item)=>{
-                    const itemEl = item.el,
-                        itemId = itemEl.attr('id'),
-                        itemTitle = $(`#${itemId} .card-title a`).html();
-                
-                    if(itemTitle && itemTitle.toLowerCase().includes(searchQuery.toLowerCase())) searchArr.push(item)
-                });
-                $('#mediaSearchContainer').show();
-                $('#mediaSortContainer,#mediaDefaultContainer').hide();
-                $('#mediaSearchContainer .row').html('');
-                console.log(searchArr)
-                searchArr.map((item)=>{
-                    
-                    $('#mediaSearchContainer .row').append(item.el);
-                });
-                $('#mediaSearchContainer h2').html(`${searchArr.length} results for '${searchQuery}'`)
-            }else{
-                $('#mediaSearchContainer').hide();
-                //$(e.target).val('').hide();
+            if(e.target.value===''){
                 $('#mediaDefaultContainer').show();
-                mediaSortArr.map((item)=>item.category.append(item.el));
+                $('#mediaSearchContainer').hide();
+                $('#mediaSortOptions #category').addClass('selected');
+            }else{
+                $('#mediaSortOptions .option').removeClass('selected');
+                $.post('api/search',{
+                    q : e.target.value
+                },(res)=>{
+                    console.log(JSON.parse(res));
+                    $('#mediaSearchContainer').show();
+                    $('#mediaSortContainer,#mediaDefaultContainer').hide();
+                    $('#mediaSearchContainer .row').html('');
+                    JSON.parse(res).map((item)=>{
+                        $('#mediaSearchContainer .row').append(mediaCardEl(item));
+                    });
+                    $('.media-like, .media-dislike').click(mediaRating);
+                    $('.media-view').click(mediaView);
+                    $('#mediaSearchContainer h2').html(`${JSON.parse(res).length} results for '${e.target.value}'`)
+                });
             }
-
-
+               
             
-            */
         }).on('blur',(e)=>{
-            $('#mediaSearchContainer').hide();
-            $(e.target).val('').hide();
-            $('#mediaDefaultContainer').show();
-            mediaSortArr.map((item)=>item.category.append(item.el));
+            //$('#mediaSearchContainer').hide();
+            //$(e.target).val('').hide();
+            //$('#mediaDefaultContainer').show();
+            //mediaSortArr.map((item)=>item.category.append(item.el));
         });
     });
 })()

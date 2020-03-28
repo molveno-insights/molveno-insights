@@ -25,13 +25,14 @@ $('input#url').on('input',(e)=>{
         $('#yt_preview').hide();
     }else{
         if(ytId.split('watch?v=')[1]){
-            $.getJSON(`https://www.googleapis.com/youtube/v3/videos?id=${ytId.split('watch?v=')[1]}&part=snippet,contentDetails&key=AIzaSyCP6BRLQ_yLKYBL1vBT-kUERA0i6XZpsNM`, function(data) {
+            $.getJSON(`https://www.googleapis.com/youtube/v3/videos?id=${ytId.split('watch?v=')[1]}&part=snippet,contentDetails,statistics,status&key=AIzaSyCP6BRLQ_yLKYBL1vBT-kUERA0i6XZpsNM`, function(data) {
                 if(data.items.length===0){
                     $(e.target).addClass('is-invalid');
                 }else{
                     $(e.target).removeClass('is-invalid');
                     $(e.target).val(ytId.split('watch?v=')[1]);
                     $('#name').val(data.items[0].snippet.title);
+                    if(data.items[0].status.madeForKids) $('#forchildren').prop('checked',true)
                     $('#yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId.split('watch?v=')[1]);
                     $(e.target).removeClass('is-invalid');
                 }    
