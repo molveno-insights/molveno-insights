@@ -15,9 +15,9 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('login') }}">
-                    <img src="/statics/Molveno_logo_white.png" height="50px" />
+                <img src="/statics/logoMolvenoInsights.png" height="75px" />
                 </a>
-                <h3 class="text-white">Hotel Staff</h3>
+                
             </div>
         </nav>
         @else
@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('media.index') }}">
-                    <img src="/statics/Molveno_logo_white.png" height="50px" />
+                <img src="/statics/logoMolvenoInsights.png" height="75px" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

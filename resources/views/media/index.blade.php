@@ -1,17 +1,17 @@
 @extends('layout.adminbase')
 
 @section('content')
-<div>
-    <h2 class="display-4">Media</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <a type="button" class="btn btn-info" href="{{ route('media.create') }}" style="margin-bottom: 20px;">Add video</a>
-            <form action="" method="GET" class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2">
-                @csrf
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input id="search" class="form-control form-control-sm ml-3 w-75" placeholder="Search" aria-label="Search" type="text" name="search">
-            </form>
-            <table class="table table-striped">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+    <div class="card">
+        <div class="card-header clearfix">
+          <h2 class="float-left">Media Overview</h2>
+          <a href="{{ route('media.create') }}" class="btn btn-outline-primary btn-lg float-right"><i class="fas fa-plus"></i> Add Video</a>
+        </div>
+        <div class="card-body">
+            {{ $mediaList->links() }}
+                <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th>Video</th>
@@ -34,9 +34,12 @@
                 </tbody>
             </table>
             {{ $mediaList->links() }}
-        </div>
-    </div>
+                </div>
+            </div>
+            </div>
+  </div>
 </div>
+   
 <div class="modal" tabindex="-1" role="dialog" id="categoryDeleteConfirm">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

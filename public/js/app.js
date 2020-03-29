@@ -9,39 +9,85 @@ $('td.deleteCategory a').each(function(i,e){
         $('#categoryDeleteConfirm').modal();
     }).attr('href','#');
 });
+function searchYTresult(item){
+    const searchYTresultEl = $('<div></div>')
+            .attr('class','searchYTresult row')
+            .attr('data-ytId',item.id.videoId),
+          searchYTresultThumbnail = $('<div></div>')
+            .attr('class','col-md-2')
+            .html(`<img src="${item.snippet.thumbnails.default.url}" width="${item.snippet.thumbnails.default.width}" class="img-thumbnail" />`),
+          searchYTresultContent =  $('<div></div>')
+            .attr('class','col-md-10'),
+          searchYTresultTitle =  $('<h3></h3>')
+            .html(item.snippet.title),
+          searchYTresultDescription =  $('<p></p>')
+            .html(item.snippet.description)
 
 
+    searchYTresultEl.append(searchYTresultThumbnail);
+    searchYTresultContent.append(searchYTresultTitle);
+    searchYTresultContent.append(searchYTresultDescription);
+    searchYTresultEl.append(searchYTresultContent);
+    return searchYTresultEl
 
-$('input#url').on('input',(e)=>{
+}
+$('#searchYT').on('submit',(e)=>{
+    e.preventDefault()
+    const ytSearchResults = $('#yt_search .results').html(''),
+          ytSearchQuery = $('#search_yt_input').val()
+    //$('#yt_search .input-group').hide()
+    $.getJSON(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${ytSearchQuery}&key=AIzaSyCP6BRLQ_yLKYBL1vBT-kUERA0i6XZpsNM`, function(data) {
+        data.items.map((item)=>{
+            const ytSearchResult = searchYTresult(item).on('click',(e)=>{
+                ytPreview(item.id.videoId)
+                //$('#youtube_url').val(item.id.videoId);
+            })
+            ytSearchResults.append(ytSearchResult)
+        });
+    });
+})
 
-    const ytId = $(e.target).val();
+$('input#youtube_url').on('input',(e)=>{
 
-    if(ytId.length === 11 ){
-        $(e.target).removeClass('is-invalid');
+    const ytId = $('#youtube_url').val();
 
-        $('#yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId);
-    }else if(ytId === '' || ytId.length < 11 ){
-        $(e.target).addClass('is-invalid');
+    if(ytId === '' || ytId.length < 11 ){
+        $('#youtube_url').addClass('is-invalid');
         $('#yt_preview').hide();
     }else{
         if(ytId.split('watch?v=')[1]){
-            $.getJSON(`https://www.googleapis.com/youtube/v3/videos?id=${ytId.split('watch?v=')[1]}&part=snippet,contentDetails,statistics,status&key=AIzaSyCP6BRLQ_yLKYBL1vBT-kUERA0i6XZpsNM`, function(data) {
-                if(data.items.length===0){
-                    $(e.target).addClass('is-invalid');
-                }else{
-                    $(e.target).removeClass('is-invalid');
-                    $(e.target).val(ytId.split('watch?v=')[1]);
-                    $('#name').val(data.items[0].snippet.title);
-                    if(data.items[0].status.madeForKids) $('#forchildren').prop('checked',true)
-                    $('#yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId.split('watch?v=')[1]);
-                    $(e.target).removeClass('is-invalid');
-                }    
-                    
-            });
+            ytPreview(ytId.split('watch?v=')[1])
+        }else{
+            ytPreview(ytId)
         }
     }
 });
 
-
+function ytPreview(ytId){
+    $.getJSON(`https://www.googleapis.com/youtube/v3/videos?id=${ytId}&part=snippet,contentDetails,statistics,status&key=AIzaSyCP6BRLQ_yLKYBL1vBT-kUERA0i6XZpsNM`, function(data) {
+                if(data.items.length===0){
+                    $('#youtube_url').addClass('is-invalid');
+                }else{
+                    $('#youtube_url').hide();
+                    $('#select_yt_video').hide()
+                    $('#addvideo').show()
+                    $('#toggle_ytvideo_select').off().on('click',(e)=>{
+                        $('#select_yt_video').show();
+                        $('#addvideo').hide();
+                        $('#youtube_url').val('').show();
+                        $('#yt_preview').hide()
+                    })
+                    $('#url').val(ytId)
+                    $('#youtube_url').removeClass('is-invalid');
+                    $('#youtube_url').val(ytId);
+                    $('#name').val(data.items[0].snippet.title);
+                    $('#description').val(data.items[0].snippet.description);
+                    if(data.items[0].status.madeForKids) $('#forchildren').prop('checked',true)
+                    $('#yt_preview').show().attr('src','https://www.youtube.com/embed/'+ytId);
+                    $('#youtube_url').removeClass('is-invalid');
+                }    
+                    
+            });
+}
 
 $('#login-form').disableAutoFill();

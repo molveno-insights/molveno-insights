@@ -1,38 +1,49 @@
 @extends('layout.adminbase')
 
 @section('content')
-<div>
-    <h2 class="display-4">Categories</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <a type="button" class="btn btn-info" href="{{ route('category.create') }}" style="margin-bottom: 20px;">Create new category</a>
-            <form action="" method="GET" class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2">
-                @csrf
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input id="search" class="form-control form-control-sm ml-3 w-75" placeholder="Search" aria-label="Search" type="text" name="search">
-            </form>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="{{ route('media.index') }}">Media</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Categories</li>
+            </ol>
+        </nav>
+        <div class="card">
+            <div class="card-header clearfix">
+            <h2 class="float-left">Categories</h2>
+            <a href="{{ route('category.create') }}" class="btn btn-outline-primary btn-lg float-right"><i class="fas fa-plus"></i> Add Category</a>
+            </div>
+            <div class="card-body">
+            {{ $categoryList->links() }}
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
-                        <th></th>
-                        <th></th>
+                        <th style="width: 20px;"></th>
+                        <th style="width: 20px;"></th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($categoryList as $category)
                     <tr>
                         <td><a href="{{ route('category.edit', [$category->id]) }}">{{ $category->name }}</a></td>
-                        <td><a href="{{ route('category.edit', [$category->id]) }}"><i class="fas fa-edit"></i></a></td>
-                        <td class="deleteCategory"><a href="{{ route('category.delete', [$category->id]) }}"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><a href="{{ route('category.edit', [$category->id]) }}" class="hover"><i class="fas fa-edit"></i></a></td>
+                        <td class="deleteCategory"><a href="{{ route('category.delete', [$category->id]) }}" class="hover"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
             {{ $categoryList->links() }}
+            </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+
 <div class="modal" tabindex="-1" role="dialog" id="categoryDeleteConfirm">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

@@ -91,39 +91,15 @@ const mediaCardsColl = ()=>{
 })()
 
 
-
 function mediaView(e){
     e.preventDefault();
     const mediaEl = $(e.target.parentNode).attr('data-media-id') 
     ? e.target.parentNode
     : e.target,
     mediaId = $(mediaEl).attr('data-media-id');
-    let player;
-    function onYouTubeIframeAPIReady(id) {
-        player = new YT.Player('mediaView', {
-          height: '390',
-          width: '640',
-          videoId: id,
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-    }
-    function onPlayerReady(event) {
-      event.target.playVideo();
-    }
-    let done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          //setTimeout(stopVideo, 6000);
-          //done = true;
-          console.log(event)
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
+    
+    
+    
     $.ajax({
         type: 'POST',
         headers: {
@@ -310,11 +286,6 @@ function mediaCardEl(item){
             }
                
             
-        }).on('blur',(e)=>{
-            //$('#mediaSearchContainer').hide();
-            //$(e.target).val('').hide();
-            //$('#mediaDefaultContainer').show();
-            //mediaSortArr.map((item)=>item.category.append(item.el));
         });
     });
 })()
