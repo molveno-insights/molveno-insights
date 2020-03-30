@@ -108,7 +108,7 @@ class MediaSeeder extends Seeder
             'category_id' => 12,
             'added_by' => 'Andries',
             'url' => 'wb11oLIn8Xc',
-            'forchildren' => 1,
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
@@ -117,7 +117,7 @@ class MediaSeeder extends Seeder
             'category_id' => 9,
             'added_by' => 'Andries',
             'url' => 'eSDAxRp0CGo',
-            'forchildren' => 1,
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
@@ -126,7 +126,16 @@ class MediaSeeder extends Seeder
             'category_id' => 9,
             'added_by' => 'Andries',
             'url' => 'DuDoSu8Gudg',
-            'forchildren' => 1,
+            'forchildren' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('media')->insert([
+            'name' => 'Molveno = Topo-Aktief',
+            'category_id' => 9,
+            'added_by' => 'Andries',
+            'url' => 'Grr1Q3tAYz0',
+            'forchildren' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
