@@ -19,6 +19,8 @@
                         <th>surname</th>
                         <th>email</th>
                         <th>phonenumber</th>
+                        <th>edit</th>
+                        <th>delete</th>
                     </tr>
                 </thead>
                 <tbody>

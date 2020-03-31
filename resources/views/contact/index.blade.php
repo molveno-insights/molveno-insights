@@ -16,14 +16,16 @@
                         <th>Topic</th>
                         <th>Roomnumber</th>
                         <th>Text</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($contactList as $contact)
                     <tr>
-                        <td>{{ $contact->topic }}</td>
-                        <td>{{ $contact->roomnumber}}</td>
+                        <td><a href="{{ route('contact.show', [$contact->id]) }}" class="hover">{{ $contact->topic }}</a></td>
+                        <td><a href="{{ route('contact.show', [$contact->id]) }}" class="hover">{{ $contact->roomnumber}}</a></td>
                         <td>{{ $contact->text}}</td>
+                        <td class="deleteContact"><a href="{{ route('contact.delete', [$contact->id]) }}" class="hover"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                 @endforeach
                 </tbody>

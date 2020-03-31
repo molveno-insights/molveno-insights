@@ -68,6 +68,9 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('customerservice')->group(function () {
         Route::get('/enquiries', 'ContactController@index')->name('contact.index');
+        Route::get('/enquiries/{contact}/delete', 'ContactController@delete')->name('contact.delete');
+        Route::get('/enquiries/{contact}', 'ContactController@show')->name('contact.show');
+
             // Route::get('/contact/{contact}', 'ContactController@show')->name('contact.show');
         });
     });
