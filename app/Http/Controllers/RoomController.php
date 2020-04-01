@@ -11,14 +11,24 @@ class RoomController extends Controller
 {
     public function chooseRoom(Request $request)
     {
-        $roomNumber = $request->cookie('roomnumber');
-        $currentGuest = Guest::findGuestByRoomNumber($roomNumber);
-        return view('room.setroom');
+        $roomNumber = $request->cookie('roomnumber', null);
+        $currentGuest = null;
+
+        if ($roomNumber) {
+            $currentGuest = Guest::findGuestByRoomNumber($roomNumber);
+        }
+
+        return view(
+            'room.setroom',
+            ['roomNumber' => $roomNumber, 'currentGuest' => $currentGuest]
+        );
     }
 
     public function setRoom(Request $request)
     {
         $roomNumber = $request->input('roomnumber');
         Cookie::queue('roomnumber', $roomNumber);
+
+        return redirect()->route('room.setroom');
     }
 }
