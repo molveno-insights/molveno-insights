@@ -18,6 +18,11 @@ class Guest extends Model
         'phonenumber',
     ];
 
+    public function contacts()
+    {
+        return $this->hasMany('\App\Contact');
+    }
+
     public static function findGuestByRoomNumber(int $roomNumber)
     {
         return Guest::where('roomnumber', $roomNumber)->first();

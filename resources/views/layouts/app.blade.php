@@ -19,6 +19,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    @if ($message ?? '' or session('message'))
+    <div class="alert alert-primary" role="alert">{{ $message ?? '' }}{{ session('message') }}</div>
+    @endif
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

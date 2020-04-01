@@ -22,6 +22,11 @@ class CreateGuestsTable extends Migration
             $table->string('phonenumber');
             $table->timestamps();
         });
+
+        Schema::table('contact', function (Blueprint $table) {
+            $table->unsignedBigInteger('guest_id');
+            $table->foreign('guest_id')->references('id')->on('guests');
+        });
     }
 
     /**

@@ -11,6 +11,10 @@
     <title>Molveno app</title>
   </head>
   <body>
+    @if ($message ?? '' or session('message'))
+    <div class="alert alert-primary" role="alert">{{ $message ?? '' }}{{ session('message') }}</div>
+    @endif
+
     <h1>Molveno lake resort</h1>
     @yield('content')
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
@@ -18,8 +22,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
-
-

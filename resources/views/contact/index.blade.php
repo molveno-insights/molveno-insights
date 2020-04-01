@@ -23,7 +23,7 @@
                 @foreach ($contactList as $contact)
                     <tr>
                         <td><a href="{{ route('contact.show', [$contact->id]) }}" class="hover">{{ $contact->topic }}</a></td>
-                        <td><a href="{{ route('contact.show', [$contact->id]) }}" class="hover">{{ $contact->roomnumber}}</a></td>
+                        <td><a href="{{ route('contact.show', [$contact->id]) }}" class="hover">{{ $contact->guest->roomnumber }}</a></td>
                         <td>{{ $contact->text}}</td>
                         <td class="deleteContact"><a href="{{ route('contact.delete', [$contact->id]) }}" class="hover"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>

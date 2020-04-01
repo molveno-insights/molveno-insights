@@ -24,10 +24,17 @@ class ContactController extends Controller
 
     public function insert(Request $request)
     {
+        $roomNumber = $request->cookie('roomnumber', null);
+
+        if ($roomNumber) {
+            $currentGuest = \App\Guest::findGuestByRoomNumber($roomNumber);
+        }
+
         if ($request->get('type') === "complaint") {
             $contact = new Contact();
             $contact->topic = 'complaint';
             $contact->text = $request->input('complaintinput');
+            $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
                 return redirect()->route('videopage');
                 var_dump("Thanks for sending us feedback!");
@@ -39,6 +46,7 @@ class ContactController extends Controller
             $contact = new Contact();
             $contact->topic = 'videosuggestion';
             $contact->text = $request->input('suggestvideoinput');
+            $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
                 return redirect()->route('videopage');
                 var_dump("Thanks for sending us feedback!");
@@ -49,6 +57,7 @@ class ContactController extends Controller
             $contact = new Contact();
             $contact->topic = 'roomservice';
             $contact->text = $request->input('roomserviceinput');
+            $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
                 return redirect()->route('videopage');
                 var_dump("Thanks for sending us feedback!");
@@ -59,6 +68,7 @@ class ContactController extends Controller
             $contact = new Contact();
             $contact->topic = 'feedback';
             $contact->text = $request->input('feedbackinput');
+            $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
                 return redirect()->route('videopage');
                 var_dump("Thanks for sending us feedback!");

@@ -11,4 +11,9 @@ class Contact extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function guest()
+    {
+        return $this->belongsTo('\App\Guest');
+    }
 }

@@ -8,8 +8,18 @@ use App\Category;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $roomNumber = $request->cookie('roomnumber', null);
+
+        if (!$roomNumber) {
+            return redirect()->route('room.setroom')->with('message', 'Roomnumber is not set');
+        }
+
+        if ($roomNumber) {
+            $currentGuest = \App\Guest::findGuestByRoomNumber($roomNumber);
+        }
+
         $sportMedia = Category::where('name', 'sport')->first()->media()->get();
         return view('welcome', ['media' => \App\Media::all(), 'sportMedia' => $sportMedia]);
     }
