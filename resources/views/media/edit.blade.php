@@ -9,16 +9,17 @@
                 <li class="breadcrumb-item" aria-current="page"><a href="{{ route('media.index') }}">Media</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Video</li>
             </ol>
-        </nav>
+        </nav><form method="POST">
+                        @csrf
         <div class="card">
             <div class="card-header clearfix">
             <h2 class="float-left">Edit Video</h2>
             <a href="{{ route('media.index') }}" class="btn btn-primary btn-lg float-right"><i class="fas fa-arrow-left"></i> Back to Media Overview</a>
             </div>
+            
             <div class="card-body">
                 <iframe id="yt_preview" width="100%" height="500" src="https://www.youtube.com/embed/{{ $media->url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <form method="POST">
-                        @csrf
+                    
                         <div class="form-group row">
                             <label for="name" class="col-md-2">Name:</label>
                             <div class="col-md-10">
@@ -52,10 +53,15 @@
                             @endif
                             <label for="forchildren">Suitable for Childeren</label>
                         </div>
-                        <button class="btn btn-lg btn-primary">Save Changes</button>
-                    </form>
+                        <input  type="hidden" id="added_by" name="added_by" value="admin" />
+                        
+                    
             </div>
-        </div>
+            <div class="card-footer">
+                <button class="btn btn-lg btn-primary float-right">Save Changes</button>
+            </div>
+            
+        </div></form>
     </div>
   </div>
 </div>

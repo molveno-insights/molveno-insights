@@ -30,10 +30,10 @@ body {
 }
 
 
-table tr a.hover{
+table tr .hover{
     visibility: hidden;
   }
-  table tr:hover a.hover{
+  table tr:hover .hover{
     visibility: visible;
   }
 

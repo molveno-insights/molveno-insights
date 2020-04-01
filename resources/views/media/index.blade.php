@@ -25,7 +25,14 @@
                 @foreach ($mediaList as $media)
                     <tr>
                         <td style="width: 150px;"><a href="https://www.youtube.com/embed/{{ $media->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" target="_blank"><img width="125" class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $media->url }}/hqdefault.jpg" /></a></td>
-                        <td><a href="{{ route('media.edit', [$media->id]) }}">{{ $media->name }}</a></td>
+                        <td>
+                          <p class="h5 lead"><a href="{{ route('media.edit', [$media->id]) }}">{{ $media->name }}</a></p>
+                          <div id="media-rating" class="text-black-50 font-weight-lighter">
+                            <i class="far fa-eye"></i><span class="media-view-count"> {{ $media->views }} | {{ $media->getRatingPercentage() }}%</span>
+                            ( <i class="media-like fas fa-thumbs-up"></i><span> {{ $media->likes }}</span> |
+                            <i class="media-dislike fas fa-thumbs-down"></i><span> {{ $media->dislikes }}</span> )
+                        </div>
+                        </td>
                         <td>{{ $media->category->name }}</td>
                         <td><a href="{{ route('media.edit', [$media->id]) }}" class="hover"><i class="fas fa-edit"></i></a></td>
                         <td class="deleteCategory"><a href="{{ route('media.delete', [$media->id]) }}" class="hover"><i class="fas fa-trash-alt"></i></a></td>
