@@ -36,7 +36,7 @@ class ContactController extends Controller
             $contact->text = $request->input('complaintinput');
             $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
-                return redirect()->route('videopage');
+                return redirect()->route('videopage')->with('message','We have received your complaint correctly!');
                 var_dump("Thanks for sending us feedback!");
             } else {
                 var_dump("Failed to send!");
@@ -48,7 +48,7 @@ class ContactController extends Controller
             $contact->text = $request->input('suggestvideoinput');
             $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
-                return redirect()->route('videopage');
+                return redirect()->route('videopage')->with('message','We have received your videosuggestion correctly!');;
                 var_dump("Thanks for sending us feedback!");
             } else {
                 var_dump("Failed to send!");
@@ -59,7 +59,7 @@ class ContactController extends Controller
             $contact->text = $request->input('roomserviceinput');
             $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
-                return redirect()->route('videopage');
+                return redirect()->route('videopage')->with('message','We have received your request for roomservice correctly!');;
                 var_dump("Thanks for sending us feedback!");
             } else {
                 var_dump("Failed to send!");
@@ -70,7 +70,7 @@ class ContactController extends Controller
             $contact->text = $request->input('feedbackinput');
             $contact->guest()->associate($currentGuest);
             if ($contact->save()) {
-                return redirect()->route('videopage');
+                return redirect()->route('videopage')->with('message','We have received your feedback correctly!');;
                 var_dump("Thanks for sending us feedback!");
             } else {
                 var_dump("Failed to send!");

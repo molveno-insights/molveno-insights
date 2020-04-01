@@ -12,6 +12,7 @@ class MediaController extends Controller
 {
     public function index(Request $request)
     {
+
         $mediaList = [];
         $query = Media::query();
 

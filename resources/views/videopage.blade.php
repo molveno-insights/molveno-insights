@@ -14,7 +14,13 @@
     </head>
     <body>
         <div class="container-fluid flex-center position-ref full-height">
-
+            @if ($message ?? '' or session('message'))
+            <br>
+            <div class="alert alert-primary" role="alert">{{ $message ?? '' }}{{ session('message') }}
+                <button class="close" data-dismiss="alert">
+                    <small><sup>X</sup></small>
+                </button></div>
+            @endif
                 @foreach ($categories as $cat)
                 <h2>{{ $cat->name }}</h2>
                     <div class="row">
