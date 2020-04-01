@@ -20,8 +20,13 @@ class VideoController extends Controller
 
     public function index()
     {
+        if (!session('profile')) {
+            return redirect('/')->with('message', 'You must select a profile');
+        }
+
         return view('videopage', ['media' => Media::all(),'categories' => Category::orderBy('name')->get()]);
     }
+
     public function search(Request $request)
     {
         $query = Media::query();
@@ -43,7 +48,7 @@ class VideoController extends Controller
     {
         $media->dislike();
     }
-    
+
     public function view(Media $media)
     {
         $media->view();
