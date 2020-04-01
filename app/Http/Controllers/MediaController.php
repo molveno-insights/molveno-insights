@@ -77,7 +77,7 @@ class MediaController extends Controller
 
         $media->name = $request->input('name');
         $media->category()->associate(Category::find($request->input('categorySelect')));
-        $media->added_by = $request->input('added_by');
+        $media->added_by = Auth::user()->name;
         $media->url = $request->input('url');
         $media->forchildren = (bool) $request->input('forchildren', 0);
 

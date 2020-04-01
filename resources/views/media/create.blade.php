@@ -36,7 +36,7 @@
                             <div class="input-group-append">
                                 <button class="btn btn-secondary" type="submit" id="search_yt"><i class="fas fa-search"></i> Search</button>
                             </div>
-</form>
+                        </form>
                         <div class='results'>
 
                         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <form method="POST" id="addvideo" style="display:none;">
                     @csrf
-                    <div class="btn btn-secondary btn-lg" id="toggle_ytvideo_select"><i class="fas fa-arrow-left"></i> Select other video</div>
+                    
                     <input type="hidden" name="url" id="url" />
                     <div class="form-group row" style="padding-top:10px;">
                         <label for="name" class="col-sm-2 col-form-label">Title</label>
@@ -71,12 +71,14 @@
                         </div>
                     </div>
                     <div class="form-group form-check">
-                        <input id="forchildren" class="form-check-input" type="checkbox" name="forchildren" value="{{ old('forchildren') }}">
+                        <input id="forchildren" class="form-check-input" type="checkbox" name="forchildren">
                         <label for="forchildren">Suitable for Childeren</label>
                     </div>
+                    <div class="btn btn-outline-secondary btn-lg" id="toggle_ytvideo_select"><i class="fas fa-arrow-left"></i> Select other video</div>
                     <button class="btn btn-lg btn-primary">Add Video</button>
                 </form>
             </div>
+            
         </div>   
     </div>
   </div>
