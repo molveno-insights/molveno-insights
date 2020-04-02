@@ -52,20 +52,6 @@ class MediaSeeder extends Seeder
             'forchildren' => 1,
         ]);
 
-        DB::table('media')->insert([
-            'name' => 'MOLVENO ...relax al lago ** trentino italy **',
-            'category_id' => Category::all()->random()->id,
-            'added_by' => 'Gijs',
-            'url' => 'DvwmK6gDNyA',
-            'forchildren' => 1,
-        ]);
-
-        DB::table('media')->insert([
-            'name' => 'MOLVENO ...relax al lago ** trentino italy **',
-            'category_id' => Category::all()->random()->id,
-            'added_by' => 'Gijs',
-            'url' => 'DvwmK6gDNyA',
-            'forchildren' => 1,
-        ]);
+       
     }
 }
