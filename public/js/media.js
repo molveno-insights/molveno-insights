@@ -110,13 +110,21 @@ function mediaView(e){
             window.scrollTo(0, 0);
             $("body").css("overflow", "hidden");
             $('#viewRating').append($(`#media-rating-${mediaId}`));
-
-            $('#viewClose').show().off().on('click',(e)=>{
+            function closeViewMedia(){
                 $(`#media-rating-container-${mediaId}`).append($(`#media-rating-${mediaId}`));
                 $('#mediaView,#viewClose,#mediaOverlay').hide();
                 //$('#mediaView').attr('src','');
                 stopVideo()
                 $("body").css("overflow", "auto");
+            }
+            $('#viewClose').show().off().on('click',(e)=>{
+                closeViewMedia()
+            });
+            $(document).keyup(function(e) {
+                if (e.key === "Escape") { 
+                   
+                   closeViewMedia()
+               }
             });
             const mediaViewCountElement = $(`#media-view-count-${mediaId}`);
             SpatialNav();
@@ -298,7 +306,7 @@ $.getScript('https://luke-chang.github.io/js-spatial-navigation/spatial_navigati
   function SpatialNav(){
     $('a, .focusable')
     .SpatialNavigation()
-    .focus(function() { $(this).css('outline', '2px solid #28558E'); })
+    .focus(function() { $(this).css('outline', '4px solid #28558E'); })
     .blur(function() { $(this).css('outline', ''); })
     .first()
     .focus();
