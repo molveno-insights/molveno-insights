@@ -43,10 +43,8 @@ const mediaCardsColl = ()=>{
         });
     });
 };
-setTimeout(()=>{
-    $('#contact_alert').fadeOut()
-},5000)
 
+setTimeout(function(){$('#contact_alert').fadeOut()},5000);
 (function mediaSort(){
     const mediaDefaultContainer = $('#mediaDefaultContainer'),
           mediaSortContainer = $('#mediaSortContainer .row');

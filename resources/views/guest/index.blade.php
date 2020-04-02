@@ -26,8 +26,7 @@
                         <th>surname</th>
                         <th>email</th>
                         <th>phonenumber</th>
-                        <th></th>
-                        <th></th>
+                
                     </tr>
                 </thead>
                 <tbody>
@@ -38,9 +37,6 @@
                         <td>{{ $guest->surname }}</td>
                         <td>{{ $guest->email }}</td>
                         <td>{{ $guest->phonenumber }}</td>
-
-                        <td><a href="{{ route('guest.edit', [$guest->id]) }}" class="hover"><i class="fas fa-edit"></i></a></td>
-                        <td class="deleteGuest"><a href="{{ route('guest.delete', [$guest->id]) }}" class="hover"><i class="fas fa-trash-alt"></i></a></td>
 
 
                     </tr>
