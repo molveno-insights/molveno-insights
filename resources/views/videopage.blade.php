@@ -6,13 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
         <link rel="stylesheet" href="/css/app.css" />
         <title>Molveno Lake Resort</title>
     </head>
     <body class="bg-dark">
         <div id="viewRating" style="position:absolute;bottom:45px;z-index:112;color:#fff !important;"></div>
-        <div class="float-right" id="viewClose" style="display:none;z-index:100;position:absolute;top:10px;right:150px;text-align:center;font-size:1.5em;color:#fff;cursor:pointer" ><i class="fas fa-times" style="color:#fff !important;"></i> Close</div>
+        <div class="float-right" id="viewClose" style="display:none;z-index:102;position:absolute;top:10px;right:150px;text-align:center;font-size:1.5em;color:#fff;cursor:pointer" ><i class="fas fa-times" style="color:#fff !important;"></i> Close</div>
         <iframe id="mediaView_" src="" frameborder="0" style="display:none; pointer-events: none;border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div id="mediaOverlay"  style="display:none; border: 0; width: 100%; height: 100%;z-index:101;position:absolute;top:0px;"></div>
         <div id="mediaView" style="display:none; border: 0; width: 100%; height: 100%;z-index:99;position:absolute;top:0px;"></div>
         <div id="mediaSortOptions">
             
@@ -107,38 +110,49 @@
             </div>
         </div>
         <div id="feedback_templ" style="display:none;">
-            <div id="complaint">
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Please leave your complaint below:</label>
-                    <textarea class="form-control" id="complaintInput" rows="3"></textarea>
-                </div>
-            </div>
-            <div id="suggestvideo">
-                <div class="form-group">
-                <h3 id="yt_title"></h3>
-                    <label for="exampleFormControlTextarea1">Suggest a video to add:</label>
-                    <input type="text" class="form-control" id="suggestVideoInput" placeholder="Enter Youtube URL or Id ">
-                    
-                    <iframe id="yt_preview" width="100%" height="400" style="display:none;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div id="order_roomservice">
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Please leave your feedback below:</label>
-                    <textarea class="form-control" id="roomService" rows="3"></textarea>
-                </div>
-            </div>
-            <div id="feedback">
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Please leave your feedback below:</label>
-                    <textarea class="form-control" id="feedbackInput" rows="3"></textarea>
-                </div>
-            </div>
+        <div id="complaint">
+        <form action="/contact?type=complaint" name="complaint" class="form-group" method="POST">
+            @csrf
+            <label for="exampleFormControlTextarea1">Please leave your complaint below:</label>
+            <textarea class="form-control" name="complaintinput" rows="3"></textarea>
+            <br>
+            <button class="btn btn-primary" name="formcomplaint">Send</button>
+        </form>
+    </div>
+    <div id="suggestvideo">
+        <form action="/contact?type=suggest-video" name="suggestvideo" class="form-group" method="POST">
+            @csrf
+            <label for="exampleFormControlTextarea1">Suggest a video to add:</label>
+            <input id="url" type="text" class="form-control" name="suggestvideoinput" placeholder="Enter Youtube URL or Id ">
+            <iframe id="yt_preview" width="100%" height="350" style="display:none;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <br>
+            <button class="btn btn-primary" name="formurl">Send</button>
+        </form>
+    </div>
+    <div id="order_roomservice">
+        <form action="/contact?type=roomservice" name="roomservice" class="form-group" method="POST">
+            @csrf
+            <label for="exampleFormControlTextarea1">Please describe your wish:</label>
+            <textarea id="text" class="form-control" name="roomserviceinput" rows="3"></textarea>
+            <br>
+            <button class="btn btn-primary" name="formroomservice">Send</button>
+        </form>
+    </div>
+    <div id="feedback">
+        <form action="/contact?type=feedback" name="feedback" class="form-group" method="POST">
+            @csrf
+            <label for="exampleFormControlTextarea1">Please leave your feedback below:</label>
+            <textarea class="form-control" name="feedbackinput" rows="3"></textarea>
+            <br>
+            <button class="btn btn-primary" name="formfeedback">Send</button>
+        </form>
+    </div>
         </div>
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
         <script src="https://www.youtube.com/iframe_api"></script>
         <script src="/js/video.js"></script>
         <script src="/js/media.js"></script>

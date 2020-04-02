@@ -51,6 +51,7 @@ class MediaController extends Controller
 
         $media = new Media();
         $media->name = $request->input('name');
+        $media->description = $request->input('description');
         $media->category()->associate($category);
         $media->added_by = Auth::user()->name;
         $media->url = $request->input('url');
@@ -76,6 +77,7 @@ class MediaController extends Controller
         ]);
 
         $media->name = $request->input('name');
+        $media->description = $request->input('description');
         $media->category()->associate(Category::find($request->input('categorySelect')));
         $media->added_by = Auth::user()->name;
         $media->url = $request->input('url');

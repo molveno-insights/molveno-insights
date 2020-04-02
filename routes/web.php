@@ -13,6 +13,11 @@
 
 Route::get('/', 'MainController@index')->name('welcome');
 Route::get('/index', 'VideoController@index')->name('videopage');
+Route::post('/index', 'ContactController@complaint')->name('complaint');
+Route::post('/index', 'ContactController@url')->name('url');
+Route::post('/index', 'ContactController@feedback')->name('feedback');
+Route::post('/index', 'ContactController@roomservice')->name('roomservice');
+
 
 Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
@@ -46,10 +51,34 @@ Route::middleware('auth')->group(function () {
         Route::get('/home', 'HomeController@index')->name('home');
 
         Route::get('/category', 'CategoryController@index')->name('category.index');
+
+
+        // guests
+
+
+        Route::get('/guests', 'GuestController@index')->name('guest.index');
+        Route::get('/guests/create', 'GuestController@create')->name('guest.create');
+        Route::post('/guests/create', 'GuestController@insert');
+        Route::get('/guests/{guests}/edit', 'GuestController@edit')->name('guest.edit');
+        Route::post('/guests/{guests}/edit', 'GuestController@update');
+        Route::get('/guests/{guest}/delete', 'GuestController@delete')->name('guest.delete');
+
+        Route::get('/setroom', 'RoomController@chooseRoom')->name('room.setroom');
+        Route::post('/setroom', 'RoomController@setRoom');
+
+        Route::prefix('customerservice')->group(function () {
+        Route::get('/enquiries', 'ContactController@index')->name('contact.index');
+        Route::get('/enquiries/{contact}/delete', 'ContactController@delete')->name('contact.delete');
+        Route::get('/enquiries/{contact}', 'ContactController@show')->name('contact.show');
+
+            // Route::get('/contact/{contact}', 'ContactController@show')->name('contact.show');
+        });
     });
 });
+Route::post('/contact', 'ContactController@insert');
 
 Auth::routes(['register' => false, 'password.request' => false, 'reset' => false]);
+
 
 Route::post('/media/{media}/like', 'VideoController@like')->name('videopage.like');
 Route::post('/media/{media}/dislike', 'VideoController@dislike')->name('videopage.dislike');

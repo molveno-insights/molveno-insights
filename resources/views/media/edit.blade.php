@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header clearfix">
             <h2 class="float-left">Edit Video</h2>
-            <a href="{{ route('media.index') }}" class="btn btn-primary btn-lg float-right"><i class="fas fa-arrow-left"></i> Back to Media Overview</a>
+            <a href="{{ route('media.index') }}" class="btn btn-outline-primary btn-lg float-right"><i class="fas fa-arrow-left"></i> Back to Media Overview</a>
             </div>
             
             <div class="card-body">
@@ -26,7 +26,12 @@
                                 <input id="name" type="text" class="form-control" name="name" value="{{ $media->name }}">
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                        <label for="description" class="col-sm-2 col-form-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="description" name="description">{{ $media->description }}</textarea>
+                        </div>
+                    </div>
                         <div class="form-group row">
                             <label for="categorySelect" class="col-md-2">Category:</label>
                             <div class="col-md-10">
@@ -58,7 +63,7 @@
                     
             </div>
             <div class="card-footer">
-                <button class="btn btn-lg btn-primary float-right">Save Changes</button>
+                <button class="btn btn-lg btn-primary">Save Changes</button>
             </div>
             
         </div></form>

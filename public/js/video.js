@@ -1,5 +1,5 @@
 let player;
-function onYouTubeIframeAPIReady(id) {
+function onYouTubeIframeAPIReady(id,after) {
     player = new YT.Player('mediaView', {
         width: 600,
         height: 400,
@@ -11,8 +11,9 @@ function onYouTubeIframeAPIReady(id) {
             onReady: initialize
         }
     });
+    if(after)after()
 }
-
+let time_update_interval;
 function initialize(){
 
     // Update the controls on load
@@ -24,16 +25,19 @@ function initialize(){
 
     // Start interval to update elapsed time display and
     // the elapsed part of the progress bar every second.
-    const time_update_interval = setInterval(function () {
+   time_update_interval = setInterval(function () {
         updateTimerDisplay();
         updateProgressBar();
     }, 1000)
 
 }
 function updateTimerDisplay(){
+
+        $('#current-time').text(formatTime( player.getCurrentTime() ));
+        $('#duration').text(formatTime( player.getDuration() ));
+
     // Update current time text display.
-    $('#current-time').text(formatTime( player.getCurrentTime() ));
-    $('#duration').text(formatTime( player.getDuration() ));
+   
 }
 
 function formatTime(time){
@@ -63,7 +67,12 @@ function updateProgressBar(){
     $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
 }
 function stopVideo() {
-    player.stopVideo();
+    try{
+        player.stopVideo();
+    }catch(e){
+        $('#mediaView').attr('src','')
+    }
+    
   }
   function onPlayerReady(event) {
     event.target.playVideo();

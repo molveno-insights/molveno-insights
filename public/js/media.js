@@ -22,7 +22,7 @@ function mediaRating(){
             
             $(`#media-rating-perc-${mediaId}`).html(ratingPerc);
             ratingPercIcon(ratingPerc,mediaId);
-            mediaCardsColl();
+            //mediaCardsColl();
         },
         'error': function() {
             alert("There was an error. Try again please!");
@@ -113,12 +113,13 @@ function mediaView(e){
 
             $('#viewClose').show().off().on('click',(e)=>{
                 $(`#media-rating-container-${mediaId}`).append($(`#media-rating-${mediaId}`));
-                $('#mediaView,#viewClose').hide();
+                $('#mediaView,#viewClose,#mediaOverlay').hide();
                 //$('#mediaView').attr('src','');
                 stopVideo()
                 $("body").css("overflow", "auto");
             });
             const mediaViewCountElement = $(`#media-view-count-${mediaId}`);
+            SpatialNav();
             $.getJSON(`https://www.googleapis.com/youtube/v3/videos?id=${mediaEl.href.split('/embed/')[1].split('?')[0]}&part=snippet,contentDetails&key=AIzaSyCP6BRLQ_yLKYBL1vBT-kUERA0i6XZpsNM`, function(data) {
                 console.log(moment.duration(data.items[0].contentDetails.duration)._milliseconds)
 
@@ -127,7 +128,7 @@ function mediaView(e){
             });
             
             $('#mediaView').attr('src',`${mediaEl.href}`).show()
-            
+            $('#mediaOverlay').show()
             
             let mediaViewCount = mediaViewCountElement.text()/1;
             mediaViewCount++
@@ -144,11 +145,12 @@ function mouseMove(e){
     
     $(`#viewRating,#viewClose`).show();
     setTimeout(()=>{
-        //$(`#viewRating,#viewClose`).hide();
+        $(`#viewRating,#viewClose`).hide();
         
     },4000);
 }
-document.getElementById("mediaView").onmousemove = mouseMove;
+document.getElementById("mediaOverlay").onmousemove = mouseMove;
+
 function ratingPercIcon(perc,id){
     let color;
     if(perc<50){
@@ -192,7 +194,7 @@ $('.media-like, .media-dislike').click(mediaRating);
 $('.media-view').click(mediaView);
 $('#videopage_feedback').on('shown.bs.modal',feedbackModal);
 function ytPreview(){
-    $('.modal input#suggestVideoInput').off().on('input',(e)=>{
+    $('.modal input#url').off().on('input',(e)=>{
         const ytId = $(e.target).val();
         if(ytId.length === 11 ){
             $(e.target).removeClass('is-invalid');
@@ -291,10 +293,13 @@ function mediaCardEl(item){
 })();
 
 $.getScript('https://luke-chang.github.io/js-spatial-navigation/spatial_navigation.js', function() {
-    $('a, .focusable')
-      .SpatialNavigation()
-      .focus(function() { $(this).css('outline', '2px solid red'); })
-      .blur(function() { $(this).css('outline', ''); })
-      .first()
-      .focus();
+    SpatialNav()
   });
+  function SpatialNav(){
+    $('a, .focusable')
+    .SpatialNavigation()
+    .focus(function() { $(this).css('outline', '2px solid #28558E'); })
+    .blur(function() { $(this).css('outline', ''); })
+    .first()
+    .focus();
+  }

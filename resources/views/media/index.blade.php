@@ -6,7 +6,7 @@
     <div class="col-md-12">
     <div class="card">
         <div class="card-header clearfix">
-          <h2 class="float-left">Media Overview</h2>
+          <h2 class="float-left">Videos</h2>
           <a href="{{ route('media.create') }}" class="btn btn-outline-primary btn-lg float-right"><i class="fas fa-plus"></i> Add Video</a>
         </div>
         <div class="card-body">
@@ -14,8 +14,8 @@
                 <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Video</th>
-                        <th>Name</th>
+                        <th></th>
+                        <th>Title</th>
                         <th>Category</th>
                         <th></th>
                         <th></th>
@@ -27,6 +27,7 @@
                         <td style="width: 150px;"><a href="https://www.youtube.com/embed/{{ $media->url }}?rel=0&amp;autoplay=1;fs=0;autohide=0;hd=0;" target="_blank"><img width="125" class="img-thumbnail" src="https://i3.ytimg.com/vi/{{ $media->url }}/hqdefault.jpg" /></a></td>
                         <td>
                           <p class="h5 lead"><a href="{{ route('media.edit', [$media->id]) }}">{{ $media->name }}</a></p>
+                          <p>{{ $media->description }}</p>
                           <div id="media-rating" class="text-black-50 font-weight-lighter">
                             <i class="far fa-eye"></i><span class="media-view-count"> {{ $media->views }} | {{ $media->getRatingPercentage() }}%</span>
                             ( <i class="media-like fas fa-thumbs-up"></i><span> {{ $media->likes }}</span> |

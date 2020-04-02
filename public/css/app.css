@@ -570,7 +570,7 @@ footer {
   max-height: 50px;
 }
 .media-rating-perc{
-  margin-top:-35px; text-align:center; font-weight:700;
+  margin-top:-35px; text-align:center; font-weight:700; font-size:0.8em !important;
 }
 
 .circle {
