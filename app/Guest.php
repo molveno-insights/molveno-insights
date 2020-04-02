@@ -23,7 +23,7 @@ class Guest extends Model
         return $this->hasMany('\App\Contact');
     }
 
-    public static function findGuestByRoomNumber(int $roomNumber)
+    public static function findGuestByRoomNumber(string $roomNumber)
     {
         return Guest::where('roomnumber', $roomNumber)->first();
     }
