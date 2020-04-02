@@ -31,7 +31,13 @@
                 @csrf
                 <div class="form-group">
                     <label for="roomnumber">Set Room:</label>
-                    <input id="roomnumber" class="form-control form-control-lg" type="number" name="roomnumber" value="">
+                    <select name="roomnumber" id="roomnumber" class="form-control">
+                                <option value="">--- Select Room ---</option>
+                                @foreach ($guests as $guest)
+                                    <option value="{{ $guest->roomnumber }}">{{ $guest->roomnumber }}</option>
+                                @endforeach
+                            </select>
+                    
                 </div>
 
                 <button class="btn btn-primary">Set Room</button>

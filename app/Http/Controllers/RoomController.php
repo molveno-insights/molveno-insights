@@ -20,7 +20,7 @@ class RoomController extends Controller
 
         return view(
             'room.setroom',
-            ['roomNumber' => $roomNumber, 'currentGuest' => $currentGuest]
+            ['roomNumber' => $roomNumber, 'currentGuest' => $currentGuest,'guests' => Guest::all()]
         );
     }
 
