@@ -27,11 +27,9 @@
         </div>
         <div id="searchMedia" class="form-inline d-flex justify-content-center md-form form-sm"><i class="fas fa-search fa-2x"></i><input class="form-control" id="searchMediaInput" placeholder="Search media" style="display:none;" /></div>
         @if ($message ?? '' or session('message'))
-            <br>
-            <div class="alert alert-primary" id="contact_alert" role="alert">{{ $message ?? '' }}{{ session('message') }}
-                <button class="close" data-dismiss="alert">
-                    <i class="fas fa-times"></i>
-                </button></div>
+            <div class="alert alert-primary" id="contact_alert" role="alert" style="margin:25px;font-size:1.5em;">
+                {{ $message ?? '' }}{!! session('message') !!}
+            </div>
         @endif
         <div id="mediaSearchContainer" style="display:none;" class="container-fluid flex-center position-ref full-height">
             <h2></h2>

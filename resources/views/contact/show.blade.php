@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">Customer Service</li>
-                <li class="breadcrumb-item active" aria-current="page">Enquiries</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('contact.index') }}">Enquiries</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $contact->topic }}</li>
             </ol>
         </nav>
