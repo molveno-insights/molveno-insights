@@ -30,7 +30,7 @@
             <form class="col-4" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="roomnumber">Set Room to this device:</label>
+                    <label for="roomnumber">Set Room:</label>
                     <input id="roomnumber" class="form-control form-control-lg" type="number" name="roomnumber" value="">
                 </div>
 

@@ -43,6 +43,9 @@ const mediaCardsColl = ()=>{
         });
     });
 };
+setTimeout(()=>{
+    $('#contact_alert').fadeOut()
+},5000)
 
 (function mediaSort(){
     const mediaDefaultContainer = $('#mediaDefaultContainer'),
