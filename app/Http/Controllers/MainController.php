@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Media;
-use App\Category;
+use App\Guest;
 
 class MainController extends Controller
 {
     public function index(Request $request)
     {
+        $currentGuest = null;
         $roomNumber = $request->cookie('roomnumber', null);
 
         if (!$roomNumber) {
@@ -17,19 +18,24 @@ class MainController extends Controller
         }
 
         if ($roomNumber) {
-            $currentGuest = \App\Guest::findGuestByRoomNumber($roomNumber);
+            $currentGuest = Guest::findGuestByRoomNumber($roomNumber);
         }
 
-       
-        return view('welcome', ['media' => \App\Media::all()]);
+        return view(
+            'welcome',
+            [
+                'media' => Media::all(),
+                'currentGuest' => $currentGuest
+            ]
+        );
     }
 
     public function show($id)
     {
-        return view('welcome', ['media' => \App\Media::findOrFail($id)]);
+        return view('welcome', ['media' => Media::findOrFail($id)]);
     }
 
-    public function profile(Request $request) 
+    public function profile(Request $request)
     {
         session(['profile' => $request->input('profile')]);
         return redirect('index/');

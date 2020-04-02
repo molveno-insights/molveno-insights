@@ -39,9 +39,9 @@ body{
     background-position: center center !important;
     background-attachment: fixed !important;
     background-repeat: no-repeat;
-    
 
-} 
+
+}
 
 
 .row {
@@ -59,6 +59,13 @@ body{
     text-transform: uppercase;
 }
 
+.welcome {
+    color: #fff;
+    text-shadow: 4px 4px 9px rgba(17, 17, 17, 1);
+    font-size: 3rem !important;
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 800px) {
     h1 {
         color: white;
@@ -67,13 +74,13 @@ body{
         text-shadow: 4px 4px 9px rgba(17, 17, 17, 1);
     }
 
-    
+
 }
 
 @media only screen and (min-width: 801px) {
     h1 {
         color: white;
-        margin-top: 100px !important;
+        margin-top: 25px !important;
         font-size: 6pc !important;
         text-shadow: 4px 4px 9px rgba(17, 17, 17, 1);
     }
@@ -97,4 +104,3 @@ input[type=text] {
     text-align: center;
     color: #000;
 }
-
