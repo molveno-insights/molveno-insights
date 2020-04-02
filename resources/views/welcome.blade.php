@@ -24,10 +24,13 @@
             </a>
         </div>
         <div class="col-12 hero-text text-center">
-            <h1>Molveno Insights</h1>
+
+        @if ($currentGuest)
+            <h1>Welcome {{ $currentGuest->name }} {{ $currentGuest->surname }}</h1>
             <p class="lead">Get to know more about Molveno Area with selected inspiring videos</p>
             <!-- <a href="{{ route('videopage') }}"><button>Watch Videos</button></a> -->
-            <div class="container-fluid" style="margin-top: 125px">
+            <p class="h1" style="color:whitesmoke; font-weight:boldest; font-size:3em;">Please select a profile</p>
+            <div class="container-fluid" style="margin-top: 25px">
                 <div class="row justify-content-center">
                     <div class="col-2">
                         <form id="select-profile-default" method="POST">
@@ -53,6 +56,12 @@
                     </div>
                 </div>
             </div>
+        @else
+            <h1>Molveno Insights</h1>
+            <p style="color:whitesmoke; font-weight:boldest; font-size:3em; text-shadow: 4px 4px 9px rgba(17, 17, 17, 1);">Room number not set to device. <br>Please contact a hotel employee.</p>
+        @endif
+          
+            
         </div>
 
     </section>

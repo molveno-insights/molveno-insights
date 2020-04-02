@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Media;
 use App\Category;
+use App\Guest;
 
 class MainController extends Controller
 {
@@ -12,21 +13,21 @@ class MainController extends Controller
     {
         $roomNumber = $request->cookie('roomnumber', null);
 
-        if (!$roomNumber) {
-            return redirect()->route('room.setroom')->with('message', 'Roomnumber is not set');
-        }
+
 
         if ($roomNumber) {
-            $currentGuest = \App\Guest::findGuestByRoomNumber($roomNumber);
+            $currentGuest = Guest::findGuestByRoomNumber($roomNumber);
+        }else{
+            $currentGuest = '';
         }
 
        
-        return view('welcome', ['media' => \App\Media::all()]);
+        return view('welcome', ['media' => Media::all(),'roomNumber' => $roomNumber, 'currentGuest' => $currentGuest]);
     }
 
     public function show($id)
     {
-        return view('welcome', ['media' => \App\Media::findOrFail($id)]);
+        return view('welcome', ['media' => Media::findOrFail($id)]);
     }
 
     public function profile(Request $request) 
