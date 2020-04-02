@@ -88,7 +88,7 @@ const mediaCardsColl = ()=>{
         
     });
     
-})()
+})();
 
 
 function mediaView(e){

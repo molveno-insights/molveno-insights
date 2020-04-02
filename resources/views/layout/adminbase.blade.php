@@ -48,7 +48,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('admin/room*')) ? 'active' : '' }}"
-                            href="{{ route('room.setroom') }}">Setroom</a>
+                            href="{{ route('room.setroom') }}">Set Room</a>
                     </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
